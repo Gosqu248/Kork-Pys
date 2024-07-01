@@ -37,7 +37,7 @@
   flex-direction: column;
   margin-top: 20px;
   width: 40%;
-  height: 90px; /* Możesz dostosować tę wartość */
+  height: 30vh; /* Możesz dostosować tę wartość */
   border-radius: 45px; /* Połowa wysokości, aby uzyskać pełne zaokrąglenie */
   color: lightgray; /* Możesz dostosować kolor tekstu */
   margin-bottom: 20px; /* Możesz dostosować margines */
@@ -56,10 +56,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80%;
+  width: 90%;
   height: 80vh;
   border-radius: 50px;
-  margin-bottom: 100px;
+  margin-bottom: 10vh;
+}
+.color1 {
+  background: linear-gradient(to right, #0000ff, #8080ff); /* Gradient niebieski */
+}
+
+.color2 {
+  background: linear-gradient(to right, #008000, #80ff80); /* Gradient zielony */
+}
+
+.color3 {
+  background: linear-gradient(to right, #ff0000, #ff8080); /* Gradient czerwony */
+}
+
+.color4 {
+  background: linear-gradient(to right, #808000, #b3b300); /* Gradient ciemniejszy żółty */
 }
 
 .image-container {
@@ -67,25 +82,24 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 40%;
-  height: 100%;
+  width: 30%;
+  height: 85%;
   border-radius: 50px;
-  background: linear-gradient(to right, #696969, #A9A9A9); /* Zmieniamy gradient na ciemniejszy szary/srebrny */
-  margin-right: 10px;
+  margin-right: 2vw;
   box-shadow: 2px 6px 10px 0px rgba(0, 0, 0, 0.5);
 }
 
 .image-container:hover {
   box-shadow: 4px 8px 15px 0px rgba(0, 0, 0, 0.5);
-  margin-top: 20px;
-  height: 110%;
-  width: 45%;
+  margin-top: 2vh;
+  height: 100%;
+  width: 35%;
   background: linear-gradient(to right, #808080, #C0C0C0); /* Zmieniamy gradient na szary/srebrny */
 }
 
 .image-container img {
-  width: 40%;
-  height: 40%;
+  width: 70%;
+  height: 50%;
   object-fit: cover;
   border-radius: 70px;
 }
@@ -93,7 +107,8 @@
 h2 {
   color: #ffffff;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 6vh;
+  font-size: 1.5vw;
 }
 .content-text {
   color: #ffffff;
@@ -131,3 +146,4 @@ h2 {
 .center-text {
   text-align: center;
 }
+

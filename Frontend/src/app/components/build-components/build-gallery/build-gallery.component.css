@@ -1,0 +1,24 @@
+.gallery-main {
+  width: 100%; /* Zajmuje całą dostępną szerokość */
+  height: 100%; /* Zajmuje całą dostępną wysokość */
+}
+
+.centered-text {
+  text-align: center;
+  margin-bottom: 3vh;
+  font-size: 3vw;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.1vh;
+}
+
+.gallery-item {
+  flex: 1;
+  background-size: cover;
+  background-position: center;
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUENscPbGJ-VPONgBqOeyAJ0X5GrmzFdzeAg&s');
+  height: 50vh;
+}

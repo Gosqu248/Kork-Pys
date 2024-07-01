@@ -1,0 +1,41 @@
+.contact-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom, white, #5162a7);
+  height: 70vh; /* Zajmuje 70% wysokości widoku */
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Wyrównuje elementy do lewej strony */
+  margin-right: 10vw; /* Dodaje margines po prawej stronie równy 20% szerokości widoku */
+}
+
+.contact-info h2 {
+  font-size: 4vw; /* Zwiększa rozmiar czcionki dla h2 */
+}
+
+.contact-info p:first-child {
+  font-weight: bold; /* Pogrubia tekst "Właściciel firmy:" */
+  font-size: 1.3vw; /* Zwiększa rozmiar czcionki dla "Właściciel firmy:" */
+  color: #FFD700; /* Zmienia kolor tekstu na złoty */
+}
+
+.contact-info p {
+  font-size: 1.2vw; /* Zwiększa rozmiar czcionki dla pozostałych paragrafów */
+}
+
+.google-map iframe{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Wyrównuje elementy do prawej strony */
+  width: 50vw; /* Szerokość mapy wynosi 30% szerokości widoku */
+  height: 60vh; /* Wysokość mapy wynosi 70% wysokości widoku */
+}
+.label {
+  font-weight: bold; /* Pogrubia tekst */
+  color: darkblue; /* Zmienia kolor tekstu na szary */
+}

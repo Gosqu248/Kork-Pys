@@ -1,0 +1,94 @@
+.background-image {
+  background-image: url('https://tarnow.net.pl/uploads/articles/ORGINAL/0a0c559f4409da131c2b4dbc2d414c666191.jpg');
+  background-size: cover;
+  position: relative;
+  height: 100vh;
+  flex:1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.background-image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  border-radius: 30vw;
+  width: 70vw;
+  transform: translateY(-10%); /* Przesuwa element o 10% do góry */
+}
+.service-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 1vh;
+  height: 50vh;
+}
+
+.service {
+  background-color: lightyellow;
+  margin: 1vw;
+  padding: 1vw;
+  border-radius: 20vw;
+  width: 20vw;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black; /* Dodaje obramowanie o grubości 2px i kolorze czarnym */
+  box-shadow: 0 26px 15px 0 rgba(0, 0, 0, 0.2), 0 26px 16px 0 rgba(0, 0, 0, 0.19); /* Zwiększa cień */
+}
+
+.service p {
+  white-space: normal; /* Pozwala tekstu przechodzić do nowej linii */
+  text-align: left; /* Wyrównuje tekst do lewej strony */
+  width: 12vw;
+  font-size: 1vw;
+}
+
+h1 {
+  font-size: 4vw;
+  color: lightyellow;
+}
+
+h2 {
+  font-size: 1.5vw;
+}
+.fas.fa-circle {
+  font-size: 0.5em; /* Zmień tę wartość, aby dostosować rozmiar ikony */
+  vertical-align: middle;
+  margin-right: 0.5vw;
+}
+.grey-service {
+  background-color: lightgray;
+  margin: 1vw;
+  padding: 1vw;
+  border-radius: 20vw;
+  width: 20vw;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black; /* Dodaje obramowanie o grubości 2px i kolorze czarnym */
+  box-shadow: 0 26px 15px 0 rgba(0, 0, 0, 0.2), 0 26px 16px 0 rgba(0, 0, 0, 0.19); /* Zwiększa cień */
+}
+
+.grey-service p {
+  white-space: normal; /* Pozwala tekstu przechodzić do nowej linii */
+  text-align: center; /* Wyrównuje tekst do lewej strony */
+  width: 12vw;
+  font-size: 1.2vw;
+}
+

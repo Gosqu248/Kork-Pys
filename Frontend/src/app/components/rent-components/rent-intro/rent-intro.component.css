@@ -1,0 +1,41 @@
+#strona-glowna {
+  /* Dodaj style dla sekcji "strona-glowna" */
+  padding: 20px;
+  height: 400px;
+  margin-top: 20px;
+  border-bottom: 1px solid #ff0000; /* Dodaj linię na dole */
+
+}
+
+#strona-glowna .spotlight {
+  /* Dodaj style dla elementu .spotlight */
+  display: flex;
+  justify-content: space-between;
+}
+
+#strona-glowna .spotlight .content {
+  /* Dodaj style dla elementu .content */
+  font-size: 1.2em;
+  width: 40%;
+  margin-left: 50px;
+}
+
+#strona-glowna .spotlight .content .major {
+  /* Dodaj style dla elementu .major */
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+#strona-glowna .spotlight .content p {
+  /* Dodaj style dla elementu p */
+  font-size: 1em;
+}
+
+#strona-glowna .spotlight .image {
+  /* Dodaj style dla elementu .image */
+  width: 400px;
+  height: 260px;
+  background-image: url('../../../../../../src/main/resources/static/rent-logo.png');
+  background-size: cover;
+  border-radius: 11vw 20vh 11vw 20vh;
+}
