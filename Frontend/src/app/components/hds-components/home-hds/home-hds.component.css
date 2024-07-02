@@ -1,0 +1,23 @@
+.body-hds {
+  /* Ustawienie gradientu tła */
+  background-image: linear-gradient(to bottom, #b3b300, #b3b350, #b3b375, #b3b399, white);
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+
+  display: flex;
+
+
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Wyśrodkowanie elementów wzdłuż osi pionowej */
+  width: 75%;
+  margin: auto; /* Dodane do wyśrodkowania elementu */
+  background: whitesmoke;
+  border-radius: 2vh;
+  margin-top: 6vh;
+  overflow: auto; /* Add this line */
+}

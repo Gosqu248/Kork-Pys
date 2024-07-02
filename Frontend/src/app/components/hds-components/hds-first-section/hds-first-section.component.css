@@ -1,0 +1,28 @@
+.major {
+  color: #333;
+  font-size: 1.5vw;
+  font-weight: bold;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5vh;
+  margin-top: 5vh;
+}
+
+.items-contianer{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  min-height: 300px;
+  padding-bottom: 7vh;
+  border-bottom: 0.05vw solid #b3b375; /* Dodaj linię na dole */
+  margin: auto;
+
+}
+
+
+
+

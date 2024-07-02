@@ -1,0 +1,35 @@
+.gallery-main {
+  width: 95%; /* Zajmuje całą dostępną szerokość */
+  height: 100%; /* Zajmuje całą dostępną wysokość */
+  margin: auto;
+  margin-bottom: 5vh; /* Dodane */
+}
+
+.centered-text {
+  text-align: center;
+  margin-bottom: 3vh;
+  font-size: 2vw;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.1vh;
+}
+
+.row id2{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5.5vh;
+}
+
+.gallery-item {
+  flex: 1;
+  background-size: cover;
+  background-position: center;
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUENscPbGJ-VPONgBqOeyAJ0X5GrmzFdzeAg&s');
+  height: 30vh;
+  margin: 1vh; /* Dodane */
+  border-radius: 2vh;
+}
