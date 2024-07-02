@@ -9,3 +9,8 @@ header {
   color: white;
   margin-top: 6vh;
 }
+
+header h1 {
+  font-size: 3vw;
+  font-weight: bold;
+}

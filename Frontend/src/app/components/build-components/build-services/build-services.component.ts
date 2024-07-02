@@ -8,13 +8,6 @@ import AOS from 'aos';
   templateUrl: './build-services.component.html',
   styleUrl: './build-services.component.css'
 })
-export class BuildServicesComponent implements OnInit{
-  constructor() {
-  }
-  ngOnInit(): void {
-    // Other initialization logic
-  }
-  ngAfterViewInit(): void {
-    AOS.init();
-  }
+export class BuildServicesComponent {
+
 }

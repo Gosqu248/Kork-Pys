@@ -1,5 +1,6 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
-import AOS from 'aos';
+import { isPlatformBrowser } from '@angular/common';
+
 
 @Component({
   selector: 'app-build-about',
@@ -8,15 +9,10 @@ import AOS from 'aos';
   templateUrl: './build-about.component.html',
   styleUrl: './build-about.component.css'
 })
-export class BuildAboutComponent implements OnInit, AfterViewInit {
+export class BuildAboutComponent  {
 
   constructor() {
   }
-  ngOnInit(): void {
-    // Other initialization logic
-  }
-  ngAfterViewInit(): void {
-    AOS.init();
-  }
+
 }
 

@@ -36,4 +36,10 @@ export const routes: Routes = [
     path: 'wypożyczalnia-sprzętu/kontakt',
     loadComponent: () => import('./components/rent-components/rent-footer/rent-footer.component').then(m => m.RentFooterComponent)
   },
+
+  // HDS
+  {
+    path: 'usługi-hds',
+    loadComponent: () => import('./components/hds-components/home-hds/home-hds.component').then(m => m.HomeHdsComponent)
+  }
 ];

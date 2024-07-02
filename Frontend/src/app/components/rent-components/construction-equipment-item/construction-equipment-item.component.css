@@ -1,5 +1,48 @@
 .card {
-  margin: 50px;
-  width: 250px;
-  height: 150px;
+  border: 0.1vw solid #ddd;
+  border-radius: 2vw;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 20vw;
+  height: 42vh;
+  margin: 3vh;
+  background-color: #fff;
+
 }
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.image-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #fff;
+}
+
+.card-body {
+  background-color: #fff;
+  width: 80%;
+  height: 70%;
+}
+
+.card-title {
+  font-size: 1.25vw;
+  font-weight: bold;
+  color: #333;
+}
+
+.card-text {
+  font-size: 1vw;
+  background-color: #fff;
+}
+
+

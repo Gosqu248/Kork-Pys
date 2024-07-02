@@ -8,8 +8,6 @@ import AOS from 'aos';
   templateUrl: './build-gallery.component.html',
   styleUrl: './build-gallery.component.css'
 })
-export class BuildGalleryComponent implements OnInit {
-  ngOnInit(): void {
-    AOS.init();
-  }
+export class BuildGalleryComponent  {
+
 }

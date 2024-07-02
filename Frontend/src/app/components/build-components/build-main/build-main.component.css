@@ -1,67 +1,47 @@
-.main-content {
+#strona-glowna {
+  /* Dodaj style dla sekcji "strona-glowna" */
+  padding: 5vw;
+  height: 55vh;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+
+}
+
+#strona-glowna .spotlight {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url('https://tarnow.net.pl/uploads/articles/ORGINAL/0a0c559f4409da131c2b4dbc2d414c666191.jpg');
-  height: 100vh; /* Zmieniamy na jednostki relatywne */
-  background-size: cover;
-  background-position: center;
-  z-index: -1;
-  position: relative;
-  width: 100%;
+  width: 90%;
 }
 
-.main-content::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: rgba(170, 170, 170, 0.3);
-  z-index: -1;
-}
-
-.text-section  {
-  margin-right: 2em; /* Zmieniamy na jednostki relatywne */
-  height: 50vh; /* Zmieniamy na jednostki relatywne */
-  width: 40vw; /* Zmieniamy na jednostki relatywne */
+#strona-glowna .spotlight .content {
+  font-size: 1.2em;
+  width: 60%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(to right, white, #5162a7);
-  padding: 1em; /* Zmieniamy na jednostki relatywne */
-  border-radius: 5em; /* Zmieniamy na jednostki relatywne */
+  margin-right: 5vw;
 }
 
-.text-section h1, .text-section h2, .text-section p {
-  font-family: 'Playfair Display', serif;
+#strona-glowna .spotlight .content .major {
+  font-weight: bold;
+  font-size: 2vw;
+  text-align: left;
 }
 
-.text-section h1 {
-  font-size: 3vw; /* Zmieniamy na jednostki relatywne */
-  margin-bottom: 1em; /* Zmieniamy na jednostki relatywne */
+#strona-glowna .spotlight .content p {
+  font-size: 1.5vw;
+  text-align: left;
 }
 
-.text-section h2 {
-  font-size: 1.7vw; /* Zmieniamy na jednostki relatywne */
-  margin-bottom: 1em; /* Zmieniamy na jednostki relatywne */
-}
-
-.text-section p {
-  font-size: 1.2vw; /* Zmieniamy na jednostki relatywne */
-  margin-bottom: 1em; /* Zmieniamy na jednostki relatywne */
-}
-
-.image-section .image {
+#strona-glowna .spotlight .image {
+  width: 30vw;
+  height: 40vh;
   background-image: url('../../../../../../src/main/resources/static/logo6.png');
   background-size: cover;
-  background-position: center;
-  width: 40vw; /* Zmieniamy na jednostki relatywne */
-  height: 50vh; /* Zmieniamy na jednostki relatywne */
-  border-radius: 5em; /* Zmieniamy na jednostki relatywne */
-  box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75),
-  10px 10px 20px 0px rgba(0,0,0,0.50),
-  15px 15px 30px 0px rgba(0,0,0,0.25);
+  background-position: 40% center; /* Add this line */
+  border-radius: 11vw 20vh 11vw 20vh;
+  align-self: center;
 }

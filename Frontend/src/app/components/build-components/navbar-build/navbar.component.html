@@ -1,11 +1,9 @@
-<nav>
-  <div class="logo"></div> <!-- Zmieniamy element img na div -->
-
+<nav id="nav">
   <ul>
-    <li><a routerLink="/" class="home-link">Strona główna</a></li>
-    <li><a routerLink="/about">O nas</a></li>
-    <li><a routerLink="/services">Usługi</a></li>
-    <li><a routerLink="/gallery">Galeria</a></li>
-    <li><a routerLink="/contact">Kontakt</a></li>
+    <li><a (click)="scrollToElement('strona-glowna')" class="active">Strona główna</a></li>
+    <li><a (click)="scrollToElement('about-banner')">O nas</a></li>
+    <li><a (click)="scrollToElement('background-image')">Usługi</a></li>
+    <li><a (click)="scrollToElement('gallery-main')">Galeria</a></li>
+    <li><a (click)="scrollToElement('contact-container')">Kontakt</a></li>
   </ul>
 </nav>

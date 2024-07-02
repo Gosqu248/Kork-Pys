@@ -5,6 +5,7 @@ import {BuildAboutComponent} from "../build-about/build-about.component";
 import {BuildServicesComponent} from "../build-services/build-services.component";
 import {BuildGalleryComponent} from "../build-gallery/build-gallery.component";
 import {BuildContactComponent} from "../build-contact/build-contact.component";
+import {BuildHeaderComponent} from "../build-header/build-header.component";
 
 @Component({
   selector: 'app-home-build',
@@ -15,7 +16,8 @@ import {BuildContactComponent} from "../build-contact/build-contact.component";
     BuildAboutComponent,
     BuildServicesComponent,
     BuildGalleryComponent,
-    BuildContactComponent
+    BuildContactComponent,
+    BuildHeaderComponent
   ],
   templateUrl: './home-build.component.html',
   styleUrl: './home-build.component.css'

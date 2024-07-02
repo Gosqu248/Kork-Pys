@@ -1,15 +1,18 @@
-.background-image {
+#background-image {
   background-image: url('https://tarnow.net.pl/uploads/articles/ORGINAL/0a0c559f4409da131c2b4dbc2d414c666191.jpg');
   background-size: cover;
   position: relative;
-  height: 100vh;
+  height: 120vh;
   flex:1;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 1vw;
+  width: 98%;
+  margin: auto;
 }
 
-.background-image::before {
+#background-image::before {
   content: '';
   position: absolute;
   top: 0;
@@ -25,14 +28,16 @@
   text-align: center;
   border-radius: 30vw;
   width: 70vw;
-  transform: translateY(-10%); /* Przesuwa element o 10% do góry */
+  transform: translateY(-20%); /* Adjusted to move the text higher */
 }
+
 .service-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center; /* Centers children horizontally */
   flex-wrap: wrap;
-  margin-top: 1vh;
-  height: 50vh;
+  height: 65vh;
+  align-items: center; /* Optional based on your layout needs */
+
 }
 
 .service {
@@ -46,15 +51,16 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 2px solid black; /* Dodaje obramowanie o grubości 2px i kolorze czarnym */
-  box-shadow: 0 26px 15px 0 rgba(0, 0, 0, 0.2), 0 26px 16px 0 rgba(0, 0, 0, 0.19); /* Zwiększa cień */
+  border: 0.15vw solid black; /* Dodaje obramowanie o grubości 2px i kolorze czarnym */
+  box-shadow: 0 1vw 1vh 0 rgba(0, 0, 0, 0.2), 0 1vw 1vh 0 rgba(0, 0, 0, 0.19); /* Zwiększa cień */
 }
 
 .service p {
   white-space: normal; /* Pozwala tekstu przechodzić do nowej linii */
   text-align: left; /* Wyrównuje tekst do lewej strony */
   width: 12vw;
-  font-size: 1vw;
+  font-size: 1.2vw;
+  align-content: center;
 }
 
 h1 {
@@ -62,8 +68,9 @@ h1 {
   color: lightyellow;
 }
 
-h2 {
+ h2 {
   font-size: 1.5vw;
+  width: 75%;
 }
 .fas.fa-circle {
   font-size: 0.5em; /* Zmień tę wartość, aby dostosować rozmiar ikony */
@@ -81,8 +88,8 @@ h2 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 2px solid black; /* Dodaje obramowanie o grubości 2px i kolorze czarnym */
-  box-shadow: 0 26px 15px 0 rgba(0, 0, 0, 0.2), 0 26px 16px 0 rgba(0, 0, 0, 0.19); /* Zwiększa cień */
+  border: 0.15vw solid black; /* Dodaje obramowanie o grubości 2px i kolorze czarnym */
+  box-shadow: 0 1vw 1vh 0 rgba(0, 0, 0, 0.2), 0 1vw 1vh 0 rgba(0, 0, 0, 0.19); /* Zwiększa cień */
 }
 
 .grey-service p {

@@ -1,41 +1,48 @@
 #strona-glowna {
   /* Dodaj style dla sekcji "strona-glowna" */
-  padding: 20px;
-  height: 350px;
-  margin-top: 20px;
-  border-bottom: 1px solid #ff0000; /* Dodaj linię na dole */
+  padding: 5vw;
+  height: 55vh;
+  border-bottom: 0.05vw solid #ff0000; /* Dodaj linię na dole */
+  align-items: center;
+  justify-content: center;
+  display: flex;
 
 }
 
 #strona-glowna .spotlight {
-  /* Dodaj style dla elementu .spotlight */
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
 }
 
 #strona-glowna .spotlight .content {
-  /* Dodaj style dla elementu .content */
   font-size: 1.2em;
-  width: 40%;
-  margin-left: 50px;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5vw;
 }
 
 #strona-glowna .spotlight .content .major {
-  /* Dodaj style dla elementu .major */
   font-weight: bold;
-  font-size: 1.5em;
+  font-size: 2vw;
+  text-align: left;
 }
 
 #strona-glowna .spotlight .content p {
-  /* Dodaj style dla elementu p */
-  font-size: 1em;
+  font-size: 1.5vw;
+  text-align: left;
 }
 
 #strona-glowna .spotlight .image {
-  /* Dodaj style dla elementu .image */
-  width: 400px;
-  height: 260px;
+  width: 30vw;
+  height: 40vh;
   background-image: url('../../../../../../src/main/resources/static/rent-logo.png');
   background-size: cover;
+  background-position: 40% center; /* Add this line */
   border-radius: 11vw 20vh 11vw 20vh;
+  align-self: center;
 }

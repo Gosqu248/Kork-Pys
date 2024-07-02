@@ -8,6 +8,6 @@ import {Component, Input} from '@angular/core';
   styleUrl: './construction-equipment-image.component.css'
 })
 export class ConstructionEquipmentImageComponent {
-  @Input() image?: string = '';
+  @Input() image?: string;
 
 }

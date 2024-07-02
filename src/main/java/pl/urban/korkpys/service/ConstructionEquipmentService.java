@@ -21,7 +21,7 @@ public class ConstructionEquipmentService {
     }
 
     public List<ConstructionEquipment> createConstructionEquipmentList() throws IOException {
-        String imageUrl = "C:/Users/grzes/IdeaProjects/Kork-Pys/src/main/resources/static/logo3.png";
+        String imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUENscPbGJ-VPONgBqOeyAJ0X5GrmzFdzeAg&s";
 
             ConstructionEquipment equipment1 = new ConstructionEquipment();
         equipment1.setTitle("Rusztowanie Elewacyjne");
@@ -53,7 +53,12 @@ public class ConstructionEquipmentService {
         equipment6.setDescription("Idealne do wykonywania prac ziemnych");
         equipment6.setImage(imageUrl);
 
-        return Arrays.asList(equipment1, equipment2, equipment3, equipment4, equipment5, equipment6);
+        ConstructionEquipment equipment7 = new ConstructionEquipment();
+        equipment7.setTitle("Wozidła jednoosiowe");
+        equipment7.setDescription("Idealne do wykonywania prac ziemnych");
+        equipment7.setImage(imageUrl);
+
+        return Arrays.asList(equipment1, equipment2, equipment3, equipment4, equipment5, equipment6, equipment7);
     }
 
     @PostConstruct
