@@ -1,45 +1,23 @@
-#wynajem {
-  /* Dodaj style dla sekcji "wynajem" */
-  padding: 20px;
-}
-
-#wynajem .major {
-  /* Dodaj style dla elementu .major */
+.major {
   color: #333;
   font-size: 1.5em;
   font-weight: bold;
   text-align: center;
   align-items: center;
   justify-content: center;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 
-#wynajem .features {
-  /* Dodaj style dla elementu .features */
+.items-contianer{
   display: flex;
-  justify-content: space-between;
-  height: 300px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 300px;
 }
 
-
-
-
-#wynajem .features li h3 {
-  /* Dodaj style dla elementu h3 */
-  color: #333;
-  font-size: 1.2em;
+app-construction-equipment-item {
+  max-width: 33.33%;
 }
 
-#wynajem .features li p {
-  /* Dodaj style dla elementu p */
-  color: #666;
-  font-size: 1em;
-}
-
-
-#wynajem .features li:nth-child(1) span {
-  /* Dodaj obraz do pierwszego elementu span */
-  background-image: url('C:/Users/grzes/IdeaProjects/Kork-Pys/src/main/resources/static/rent-logo.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-}

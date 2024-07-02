@@ -1,9 +1,10 @@
 import { Routes } from '@angular/router';
+import {HomeComponent} from "./components/home/home.component";
 
 export const routes: Routes = [
   {
     path: '',
-    loadComponent: () => import('./components/home/home.component').then(m => m.HomeComponent)
+    component: HomeComponent
   },
   {
     path: 'usługi-budowlane',
@@ -19,7 +20,7 @@ export const routes: Routes = [
     path: 'wypożyczalnia-sprzętu',
     loadComponent: () => import('./components/rent-components/home-rent/home-rent.component').then(m => m.HomeRentComponent)
   },
-  /*{
+  {
     path: 'wypożyczalnia-sprzętu/strona-glowna',
     loadComponent: () => import('./components/rent-components/rent-intro/rent-intro.component').then(m => m.RentIntroComponent)
   },
@@ -34,5 +35,5 @@ export const routes: Routes = [
   {
     path: 'wypożyczalnia-sprzętu/kontakt',
     loadComponent: () => import('./components/rent-components/rent-footer/rent-footer.component').then(m => m.RentFooterComponent)
-  },*/
+  },
 ];

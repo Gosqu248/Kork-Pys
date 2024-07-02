@@ -1,6 +1,12 @@
-<section id="wynajem" class="main special">
-  <header class="major">
-    <h2>Dostępne sprzęty budowlane do wypożyczenia</h2>
-  </header>
+<header class="major">
+  <h2>Dostępne sprzęty budowlane do wypożyczenia</h2>
+</header>
 
-</section>
+<div class="items-contianer">
+  <app-construction-equipment-item
+    *ngFor="let item of constructionEquipment"
+    [title]="item.title"
+    [description]="item.description"
+    [image]="item.image">
+  </app-construction-equipment-item>
+</div>
