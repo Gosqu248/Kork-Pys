@@ -1,6 +1,6 @@
 .body-hds {
   /* Ustawienie gradientu tła */
-  background-image: linear-gradient(to bottom, #b3b300, #b3b350, #b3b375, #b3b399, white);
+  background-image: linear-gradient(to bottom, #b6b619, #ffff00, #ffff1a, #ffff4b, #ffffb4, whitesmoke);
   width: 100%;
   height: 100%;
   flex-direction: column;

@@ -2,10 +2,11 @@
   /* Dodaj style dla sekcji "strona-glowna" */
   padding: 5vw;
   height: 55vh;
-  border-bottom: 0.05vw solid #ffff00; /* Dodaj linię na dole */
+  border-bottom: 0.05vw solid #00ff00; /* Dodaj linię na dole */
   align-items: center;
   justify-content: center;
   display: flex;
+
 }
 
 #strona-glowna .spotlight {
@@ -34,13 +35,16 @@
 #strona-glowna .spotlight .content p {
   font-size: 1.5vw;
   text-align: left;
+  margin-top: 0; /* Adjust or remove the top margin */
+  margin-bottom: 0; /* Adjust or remove the bottom margin */
 }
 
 #strona-glowna .spotlight .image {
   width: 30vw;
   height: 40vh;
-  background-image: url('../../../../../../src/main/resources/static/logo-hds.png');
+  background-image: url('../../../../../../src/main/resources/static/eco-logo.jpg');
   background-size: cover;
-  background-position: 40% center; /* Add this line */
+  background-position: 60% center; /* Add this line */
   border-radius: 11vw 20vh 11vw 20vh;
+  align-self: center;
 }

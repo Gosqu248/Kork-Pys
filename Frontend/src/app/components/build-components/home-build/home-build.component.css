@@ -1,6 +1,6 @@
 .body-build {
   /* Ustawienie gradientu tła */
-  background-image: linear-gradient(to bottom,  #3333ff, #6666ff, #9999ff, #ccccff, #ffffff);
+  background-image: linear-gradient(to bottom, #0101cb,  #3333ff, #6666ff, #9999ff, #ccccff, #ffffff);
   width: 100%;
   height: 100%;
   flex-direction: column;

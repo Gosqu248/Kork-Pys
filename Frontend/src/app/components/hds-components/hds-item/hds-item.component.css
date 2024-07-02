@@ -11,8 +11,7 @@
   width: 20vw;
   height: 42vh;
   margin: 3vh;
-  background-image: linear-gradient(to bottom, #ff0000, #ff3333, #ff6666, #ff9999, #ffcccc, #ffffff);
-
+  background-image: linear-gradient(to bottom, #b6b619, #ffff00, #ffff1a, #ffff4b, #ffffb4, whitesmoke);
 }
 
 .card:hover {

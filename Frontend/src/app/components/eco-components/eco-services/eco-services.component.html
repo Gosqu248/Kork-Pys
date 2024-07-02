@@ -1,11 +1,12 @@
-<header class="major">
+<header id="major">
   <h2>Usługi jakie wykonujemy</h2>
 </header>
 <div class="items-contianer">
-  <app-hds-item
+  <app-service-item
     *ngFor="let item of services"
     [title]="item.title"
     [description]="item.description"
     [image]="item.image">
-  </app-hds-item>
+  </app-service-item>
 </div>
+

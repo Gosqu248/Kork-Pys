@@ -1,0 +1,42 @@
+#contact-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh; /* Full height of the viewport */
+  padding: 0; /* Remove default padding */
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-right: 5vw;
+  width: 30%; /* Zmienione z 40vw na 400px */
+}
+
+.contact-info h2 {
+  font-size: 2vw; /* Zmienione z 4vw na 40px */
+}
+
+.contact-info p {
+  font-size: 1.2vw; /* Zmienione z 1.2vw na 12px */
+}
+
+.google-map iframe{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 30vw; /* Zmienione z 50vw na 500px */
+  height: 43vh; /* Zmienione z 60vh na 600px */
+}
+
+.label {
+  font-weight: bold;
+  color: forestgreen;
+}
+
+#sec {
+  margin-top: -1vh;
+  margin-left: 11vw;
+
+}
