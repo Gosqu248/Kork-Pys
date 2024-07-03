@@ -39,7 +39,7 @@
 #strona-glowna .spotlight .image {
   width: 30vw;
   height: 40vh;
-  background-image: url('../../../../../../src/main/resources/static/logo6.png');
+  background-image: url('../../../../../../src/main/resources/static/img/logo6.png');
   background-size: cover;
   background-position: 40% center; /* Add this line */
   border-radius: 11vw 20vh 11vw 20vh;

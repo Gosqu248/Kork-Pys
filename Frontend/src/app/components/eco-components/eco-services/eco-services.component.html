@@ -3,10 +3,10 @@
 </header>
 <div class="items-contianer">
   <app-service-item
-    *ngFor="let item of services"
+    *ngFor="let item of ecoServices"
     [title]="item.title"
     [description]="item.description"
-    [image]="item.image">
+    [image]="'http://localhost:8080' +item.image">
   </app-service-item>
 </div>
 

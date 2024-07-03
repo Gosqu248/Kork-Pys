@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 import {NgForOf} from "@angular/common";
 import {HdsItemComponent} from "../hds-item/hds-item.component";
+import {HdsServicesService} from "../../../services/hds-services.service";
 
 @Component({
   selector: 'app-hds-first-section',
@@ -16,7 +17,7 @@ import {HdsItemComponent} from "../hds-item/hds-item.component";
 export class HdsFirstSectionComponent implements OnInit{
   public services: any;
 
-  constructor() {
+  constructor(private HdsServiceService: HdsServicesService) {
   }
 
   ngOnInit(): void {
@@ -25,10 +26,8 @@ export class HdsFirstSectionComponent implements OnInit{
   }
 
   fetchData(): void {
-    this.services = [
-      { title: 'Przewóz rzeczy wraz z załadunkiem', description: 'Opis usługi wywozu płynnych nieczystości.', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUENscPbGJ-VPONgBqOeyAJ0X5GrmzFdzeAg&s' },
-      { title: 'Usługi transportowe', description: 'Opis usługi opróżniania przydomowych oczyszczalni.', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUENscPbGJ-VPONgBqOeyAJ0X5GrmzFdzeAg&s' },
-      { title: 'Dostawa materiałów z wypożyczalni', description: 'Opis usługi wywozu szamba.', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUENscPbGJ-VPONgBqOeyAJ0X5GrmzFdzeAg&s' }
-    ];
+    this.HdsServiceService.getHdsServices().subscribe(data => {
+      this.services = data;
+    })
   }
 }

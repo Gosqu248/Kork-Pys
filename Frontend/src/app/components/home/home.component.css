@@ -46,11 +46,14 @@
 .welcome-container h1 {
   margin: 0; /* Usuwa domyślne marginesy dla h1 */
   color: white;
+  font-size: 3.4vw ;
 }
 
 .welcome-container p {
   margin: 10px; /* Usuwa domyślne marginesy dla p */
   color: white;
+  font-size: 1.7vw ;
+
 }
 .main-container {
   display: flex;
@@ -104,23 +107,49 @@
   border-radius: 70px;
 }
 
+.img {
+  width: 70%;
+  height: 25vh;
+  object-fit: cover;
+  border-radius: 70px;
+  background-size: cover;
+  background-position: center;
+}
+
+.img1 {
+  background-image: url("../../../../../src/main/resources/static/img/logo6.png");
+}
+
+.img2 {
+  background-image: url("../../../../../src/main/resources/static/img/rent-logo.png");
+}
+
+.img3 {
+  background-image: url("../../../../../src/main/resources/static/img/logo-hds.png");
+}
+
+.img4 {
+  background-image: url("../../../../../src/main/resources/static/img/eco-logo.jpg");
+}
+
 h2 {
   color: #ffffff;
   text-align: center;
   margin-top: 6vh;
   font-size: 1.5vw;
+  height: 10vh;
 }
 .content-text {
   color: #ffffff;
   text-align: center;
-  margin-top: 20px;
+  height: 5vh;
   width: 70%;
   line-height: 2;  /* Dodajemy tę linię */
 }
 
 .footer {
   width: 100%;
-  height: 90px;
+  height: 12vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -130,20 +159,24 @@ h2 {
 }
 .footer-container {
   width: 75%;
-  height: 20px;
+  height: 5vh;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 20px;
+  padding: 1vw;
   color: #ffffff;
 }
 .instagram-icon {
   color: lightcyan;
-  margin-left: 10px;
-  font-size: 25px ;
+  margin-left: 1vw;
+  font-size: 1.5vw ;
 }
 .center-text {
   text-align: center;
+  font-size: 1.2vw ;
 }
 
+.footer-container p, .footer-container .center-text {
+  font-size: 1.1vw; /* Adjusts font size for text and centered text in the footer */
+}

@@ -42,7 +42,7 @@
 #strona-glowna .spotlight .image {
   width: 30vw;
   height: 40vh;
-  background-image: url('../../../../../../src/main/resources/static/eco-logo.jpg');
+  background-image: url('../../../../../../src/main/resources/static/img/eco-logo.jpg');
   background-size: cover;
   background-position: 60% center; /* Add this line */
   border-radius: 11vw 20vh 11vw 20vh;

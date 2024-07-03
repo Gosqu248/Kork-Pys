@@ -20,25 +20,35 @@
 }
 
 .image-div {
+  margin-top: 1vh;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
+  height: 17vh;
+
 }
 
 .card-body {
   width: 80%;
-  height: 70%;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .card-title {
   font-size: 1.25vw;
   font-weight: bold;
   color: #333;
+  width: 100%;
+  height: 2vh;
+  text-align: center;
 }
 
 .card-text {
   font-size: 1vw;
+  width: 100%;
+
 }
-
-
