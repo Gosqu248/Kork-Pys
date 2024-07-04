@@ -12,6 +12,7 @@ import {EcoNavComponent} from "../eco-nav/eco-nav.component";
 import {EcoIntroComponent} from "../eco-intro/eco-intro.component";
 import {EcoServicesComponent} from "../eco-services/eco-services.component";
 import {EcoGalleryComponent} from "../eco-gallery/eco-gallery.component";
+import {EcoLoginComponent} from "../eco-login/eco-login.component";
 
 @Component({
   selector: 'app-home-eco',
@@ -29,7 +30,8 @@ import {EcoGalleryComponent} from "../eco-gallery/eco-gallery.component";
     EcoNavComponent,
     EcoIntroComponent,
     EcoServicesComponent,
-    EcoGalleryComponent
+    EcoGalleryComponent,
+    EcoLoginComponent,
   ],
   templateUrl: './home-eco.component.html',
   styleUrl: './home-eco.component.css'

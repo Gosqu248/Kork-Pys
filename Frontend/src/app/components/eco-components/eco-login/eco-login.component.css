@@ -1,0 +1,38 @@
+.container {
+  width: 100%;
+  text-align: center;
+  border-radius: 0 0 1vw 1vw;
+  box-shadow: 0 0.2vw 0.7vw 0 #00ff00;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  font-size: 1.5vw;
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+}
+
+.content h2 {
+  font-size: 1.7vw;
+}
+
+.button-link {
+  display: inline-block;
+  padding: 1vw 2vh;
+  background-color: #00ad00;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.button-link:hover {
+  background-color: #00ff00;
+}

@@ -1,12 +1,10 @@
 #strona-glowna {
   /* Dodaj style dla sekcji "strona-glowna" */
-  padding: 5vw;
-  height: 55vh;
-  border-bottom: 0.05vw solid #00ff00; /* Dodaj linię na dole */
-  align-items: center;
+  height: auto;
   justify-content: center;
   display: flex;
-
+  border-radius: 0 0 1vw 1vw;
+  box-shadow: 0 0.2vw 0.7vw 0 #00ff00;
 }
 
 #strona-glowna .spotlight {
@@ -23,7 +21,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-right: 5vw;
+  margin: 5vw;
 }
 
 #strona-glowna .spotlight .content .major {

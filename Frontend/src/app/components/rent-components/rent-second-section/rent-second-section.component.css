@@ -2,6 +2,7 @@
   width: 95%; /* Zajmuje całą dostępną szerokość */
   height: 100%; /* Zajmuje całą dostępną wysokość */
   margin: auto;
+  margin-top: 5vh;
   margin-bottom: 5vh; /* Dodane */
 }
 

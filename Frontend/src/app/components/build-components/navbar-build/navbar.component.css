@@ -19,7 +19,9 @@ nav ul {
   height: 100%;
   font-size: 3vh;
   margin: auto;
-color: whitesmoke;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bolder;
+  color: whitesmoke;
 }
 
 li:hover {

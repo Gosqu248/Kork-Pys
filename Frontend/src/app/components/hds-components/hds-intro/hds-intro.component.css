@@ -2,7 +2,8 @@
   /* Dodaj style dla sekcji "strona-glowna" */
   padding: 5vw;
   height: 55vh;
-  border-bottom: 0.05vw solid #ffff00; /* Dodaj linię na dole */
+  border-radius: 0 0 1vw 1vw;
+  box-shadow: 0 0.2vw 0.7vw 0 #dada3f;
   align-items: center;
   justify-content: center;
   display: flex;
