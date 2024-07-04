@@ -6,6 +6,6 @@
     *ngFor="let item of services"
     [title]="item.title"
     [description]="item.description"
-    [image]="item.image">
+    [image]="'http://localhost:8080' + item.image">
   </app-hds-item>
 </div>

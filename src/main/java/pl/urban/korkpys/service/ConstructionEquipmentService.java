@@ -18,25 +18,24 @@ public class ConstructionEquipmentService {
     }
 
     public List<ConstructionEquipment> createConstructionEquipmentList() {
-        String imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUENscPbGJ-VPONgBqOeyAJ0X5GrmzFdzeAg&s";
         List<ConstructionEquipment> equipmentList = new ArrayList<>();
 
         String[][] equipmentData = {
-                {"Rusztowanie Elewacyjne", "Duża ilość rusztowania przeznaczonego pod elewacje budynków."},
-                {"Komplentne szalunki ", "Wynajem kompletnych szalunków lub pojedynczych elementów."},
-                {"Walec kolcowy", "Walec kolcowy 1.5t na pilota"},
-                {"Koparki gąsienicowe ", "2 Koparki gąsienicowe: | 2t | 3t |"},
-                {"Wiertnica do koparki", "Wiertnica do koparki 250mm"},
-                {"Wozidła", "Wozidła: | 1,5t | 2t | 3t | "},
-                {"Zagęszczarka", "Zagęszczarka spalinowa 250kg"},
-                {"Skoczek ", "Zagęszczarka typu skoczek - stopa wibracyjna"},
+                {"Rusztowanie Elewacyjne", "Duża ilość rusztowania przeznaczonego pod elewacje budynków.", "rusztowanie1.jpg"},
+                {"Komplentne szalunki ", "Wynajem kompletnych szalunków lub pojedynczych elementów.", "szalunek2.jpg"},
+                {"Walec kolcowy", "Walec kolcowy 1.5t na pilota", "walec2.jpg"},
+                {"Koparki gąsienicowe ", "2 Koparki gąsienicowe: | 2t | 3t |", "koparka1.jpg"},
+                {"Wiertnica do koparki", "Wiertnica do koparki 250mm", "koparka2.jpg"},
+                {"Wozidła", "Wozidła: | 1,5t | 2t | 3t | ", "koparka2.jpg"},
+                {"Zagęszczarka", "Zagęszczarka spalinowa 250kg", "skoczek2.jpg"},
+                {"Skoczek ", "Zagęszczarka typu skoczek - stopa wibracyjna", "skoczek.jpg"},
         };
 
         for (String[] data : equipmentData) {
             ConstructionEquipment equipment = new ConstructionEquipment();
             equipment.setTitle(data[0]);
             equipment.setDescription(data[1]);
-            equipment.setImage(imageUrl);
+            equipment.setImage("/img/" + data[2]);
             equipmentList.add(equipment);
         }
 

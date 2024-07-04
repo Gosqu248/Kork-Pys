@@ -14,7 +14,7 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center; /* Wyśrodkowanie elementów wzdłuż osi pionowej */
-  width: 75%;
+  width: 80%;
   margin: auto; /* Dodane do wyśrodkowania elementu */
   background: whitesmoke;
   border-radius: 2vh;

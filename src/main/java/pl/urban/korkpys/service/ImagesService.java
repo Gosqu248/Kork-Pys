@@ -28,11 +28,11 @@ public List<Images> createImagesList() {
             {"szambiarka5.jpg", "eco"},
             {"szambiarka5.jpg", "eco"},
             {"rusztowanie1.jpg", "rent"},
-            {"rusztowanie2.jpg", "rent"},
+            {"rusztowanie5.jpg", "rent"},
             {"rusztowanie3.jpg", "rent"},
-            {"szolunek1.jpg", "rent"},
-            {"szolunek2.jpg", "rent"},
-            {"szolunek3.jpg", "rent"},
+            {"szalunek1.jpg", "rent"},
+            {"szalunek2.jpg", "rent"},
+            {"szalunek3.jpg", "rent"},
             {"koparka1.jpg", "rent"},
             {"skoczek.jpg", "rent"},
             {"hds1.jpg", "hds"},
@@ -41,6 +41,11 @@ public List<Images> createImagesList() {
             {"hds4.jpg", "hds"},
             {"hds5.jpg", "hds"},
             {"hds6.jpg", "hds"},
+            {"melsztyn.jpg", "build"},
+            {"paleśnica1.jpg", "build"},
+            {"paleśnica2.jpg", "build"},
+
+
     };
 
     for (String[] data : imgData) {
@@ -53,10 +58,11 @@ public List<Images> createImagesList() {
 }
 
     @PostConstruct
-    public void createAndSaveImages() {
+    public void createAndSaveOrUpdateImages() {
         List<Images> existingImagesList = imagesRepository.findAll();
         List<Images> newImagesList = createImagesList();
 
+        // Save new or update existing images
         newImagesList.forEach(newImage -> {
             Images existingImage = existingImagesList.stream()
                     .filter(e -> e.getImage().equals(newImage.getImage()))
@@ -65,6 +71,16 @@ public List<Images> createImagesList() {
 
             if (existingImage == null) {
                 imagesRepository.save(newImage);
+            }
+        });
+
+        // Remove images that are no longer in the new list
+        existingImagesList.forEach(existingImage -> {
+            boolean existsInNewList = newImagesList.stream()
+                    .anyMatch(newImage -> newImage.getImage().equals(existingImage.getImage()));
+
+            if (!existsInNewList) {
+                imagesRepository.delete(existingImage);
             }
         });
     }

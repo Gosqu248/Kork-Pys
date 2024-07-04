@@ -21,6 +21,6 @@
   width: 100%;
   min-height: 300px;
   padding-bottom: 7vh;
-  border-bottom: 0.05vw solid #adff2f; /* Dodaj linię na dole */
+  border-bottom: 0.05vw solid whitesmoke; /* Dodaj linię na dole */
   margin: auto;
 }

@@ -1,14 +1,9 @@
-<div id="gallery-main">
-  <h1 class="centered-text">Galeria wykonanych projektów</h1>
-  <div class="row">
-    <div class="gallery-item"></div>
-    <div class="gallery-item"></div>
-    <div class="gallery-item"></div>
-  </div>
-  <div class="row id2" >
-    <div class="gallery-item"></div>
-    <div class="gallery-item"></div>
-    <div class="gallery-item"></div>
-  </div>
+<header id="gallery-main" >
+  <h1 class="centered-text">Galeria </h1>
+</header>
+<div class="items-contianer">
+  <app-build-gallery-item
+    *ngFor="let item of images"
+    [image]="'http://localhost:8080' + item.image">
+  </app-build-gallery-item>
 </div>
-

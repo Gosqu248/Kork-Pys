@@ -22,18 +22,13 @@ export class EcoGalleryComponent implements OnInit{
 
   ngOnInit(): void {
     console.log('Eco Gallery');
-    this.fetchEcoImages();
-  }
-
-  fetchEcoImages(): void {
-    this.ImageService.getImagesByCategory('eco').subscribe(images => {
-      this.images = images;
-    });
+    this.fetchData();
   }
 
   fetchData(): void {
-    this.ImageService.getImages().subscribe(data => {
-      this.images = data;
+    this.ImageService.getCategoryImages('eco').subscribe({
+      next: (images) => this.images = images,
+      error: (err) => console.error('Failed to fetch eco images', err)
     });
   }
 }

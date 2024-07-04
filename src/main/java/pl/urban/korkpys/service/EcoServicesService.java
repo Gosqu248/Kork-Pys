@@ -22,9 +22,9 @@ public class EcoServicesService {
         List<EcoServices> ecoList = new ArrayList<>();
 
         String[][] ecoData = {
-                {"Wywóz płynnych nieczystości", "Gwarancją szybkiego i bezpiecznego pozbycia się odpadów.", "logo6.png"},
-                {"Opróżnianie przydomowych oczyszczalni", "Skuteczne i ekologiczne opróżnianie przydomowych oczyszczalni ścieków. Możliwość stałej współpracy.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUENscPbGJ-VPONgBqOeyAJ0X5GrmzFdzeAg&s"},
-                {"Wywóz szamba", "Bezproblemowy i higieniczny wywóz szamba z pełnym przestrzeganiem przepisów sanitarnych. Możliwość stałej współpracy.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUENscPbGJ-VPONgBqOeyAJ0X5GrmzFdzeAg&s"}
+                {"Wywóz płynnych nieczystości", "Gwarancją szybkiego i bezpiecznego pozbycia się odpadów.", "szambiarka2.jpg"},
+                {"Opróżnianie przydomowych oczyszczalni", "Skuteczne i ekologiczne opróżnianie przydomowych oczyszczalni ścieków. Możliwość stałej współpracy.", "szambiarka4.jpg"},
+                {"Wywóz szamba", "Bezproblemowy i higieniczny wywóz szamba z pełnym przestrzeganiem przepisów sanitarnych. Możliwość stałej współpracy.", "szambiarka4.jpg"}
         };
 
         for (String[] data : ecoData) {

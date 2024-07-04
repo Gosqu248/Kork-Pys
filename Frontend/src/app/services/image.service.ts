@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {map, Observable} from "rxjs";
 import {ImageModel} from "../models/image.model";
 
 
@@ -13,11 +13,10 @@ export class ImageService {
 
   constructor(private http: HttpClient) { }
 
-  getImagesByCategory(category: string): Observable<ImageModel[]> {
-    return this.http.get<ImageModel[]>(`${this.apiUrl}?category=${category}`);
-  }
 
-  getImages(): Observable<ImageModel[]> {
-    return this.http.get<ImageModel[]>(this.apiUrl);
+  getCategoryImages(category: string): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl).pipe(
+      map(images => images.filter(image => image.category === category))
+    );
   }
 }

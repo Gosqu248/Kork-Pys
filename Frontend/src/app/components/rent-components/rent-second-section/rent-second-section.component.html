@@ -1,13 +1,10 @@
-<div id="gallery-main">
+<header id="gallery-main" >
   <h1 class="centered-text">Galeria sprzętów</h1>
-  <div class="row">
-    <div class="gallery-item"></div>
-    <div class="gallery-item"></div>
-    <div class="gallery-item"></div>
-  </div>
-  <div class="row id2" >
-    <div class="gallery-item"></div>
-    <div class="gallery-item"></div>
-    <div class="gallery-item"></div>
-  </div>
+</header>
+<div class="items-contianer">
+  <app-rent-gallery-item
+    *ngFor="let item of images"
+    [image]="'http://localhost:8080' + item.image">
+  </app-rent-gallery-item>
 </div>
+

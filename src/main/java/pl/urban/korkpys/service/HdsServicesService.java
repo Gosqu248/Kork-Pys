@@ -22,16 +22,16 @@ public class HdsServicesService {
         List<HdsServices> hdslist = new ArrayList<>();
 
         String[][] hdsData = {
-                {"Przewóz rzeczy wraz z załadunkiem", "Opis usługi wywozu płynnych nieczystości.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUENscPbGJ-VPONgBqOeyAJ0X5GrmzFdzeAg&s"},
-                {"Usługi transportowe", "Opis usługi opróżniania przydomowych oczyszczalni.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUENscPbGJ-VPONgBqOeyAJ0X5GrmzFdzeAg&s"},
-                {"Dostawa materiałów z wypożyczalni", "Opis usługi wywozu szamba.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUENscPbGJ-VPONgBqOeyAJ0X5GrmzFdzeAg&s"}
+                {"Przewóz rzeczy wraz z załadunkiem", "Opis usługi wywozu płynnych nieczystości.", "hds3.jpg"},
+                {"Usługi transportowe", "Opis usługi opróżniania przydomowych oczyszczalni.", "hds3.jpg"},
+                {"Dostawa materiałów z wypożyczalni", "Opis usługi wywozu szamba.", "hds3.jpg"}
         };
 
         for (String[] data : hdsData) {
             HdsServices service = new HdsServices();
             service.setTitle(data[0]);
             service.setDescription(data[1]);
-            service.setImage(data[2]);
+            service.setImage("/img/" + data[2]);
             hdslist.add(service);
         }
 

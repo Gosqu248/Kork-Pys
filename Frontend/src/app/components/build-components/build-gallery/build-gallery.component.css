@@ -12,24 +12,15 @@
   width: 100%;
 }
 
-.row {
+.items-contianer{
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.1vh;
-}
-
-.row id2{
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 5.5vh;
-}
-
-.gallery-item {
-  flex: 1;
-  background-size: cover;
-  background-position: center;
-  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUENscPbGJ-VPONgBqOeyAJ0X5GrmzFdzeAg&s');
-  height: 30vh;
-  margin: 1vh; /* Dodane */
-  border-radius: 2vh;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  min-height: 300px;
+  padding-bottom: 7vh;
+  border-bottom: 0.05vw solid whitesmoke; /* Dodaj linię na dole */
+  margin: auto;
 }
