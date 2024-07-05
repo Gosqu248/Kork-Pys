@@ -1,1 +1,34 @@
-<p>login-main works!</p>
+<div class="wrapper">
+  <div [class.login-text]="true" [class.expand]="isExpanded">
+    <div class="left-container">
+      <button class="cta" (click)="toggle()">
+        <fa-icon [icon]="isExpanded ? faChevronUp : faChevronDown"></fa-icon>
+      </button>
+      <form (ngSubmit)="onSubmit()" [class.text]="true" [class.show-hide]="isExpanded">
+        <a>Logowanie</a>
+        <hr>
+        <br>
+        <input type="text" [(ngModel)]="street" name="Miejscowość" placeholder="Miejscowość">
+        <br>
+        <input type="text" [(ngModel)]="buildingNumber" name="Numer domu" placeholder="Numer domu">
+        <br>
+        <button type="submit" class="login-btn">Zaloguj się</button>
+      </form>
+    </div>
+    <div class="right-container">
+      <h1>Jak się zalogować?</h1>
+      <br>
+      <p>1. Wprowadź swój kod pocztowy.</p>
+      <p>2. Wprowadź swój adres.</p>
+      <p>3. Naciśnij na przycisk "Zaloguj się".</p>
+      <br>
+      <br>
+      <p></p>
+      <br>
+    </div>
+  </div>
+  <div class="call-text">
+    <h1>Potrzebujesz swojej <span>faktury?</span></h1>
+    <p>Zdobądź dostęp do wszystkich swoich faktur!</p>
+  </div>
+</div>

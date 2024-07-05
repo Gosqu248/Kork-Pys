@@ -30,4 +30,9 @@ export const routes: Routes = [
     path: 'logowanie',
     loadComponent: () => import('./components/login-components/home-login/home-login.component').then(m => m.HomeLoginComponent)
   },
+
+  {
+    path: 'zalogowany',
+    loadComponent: () => import('./components/login-components/home-user/home-user.component').then(m => m.HomeUserComponent)
+  }
 ];

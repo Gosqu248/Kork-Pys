@@ -8,6 +8,7 @@ public class KorkPysApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(KorkPysApplication.class, args);
+
 	}
 
 }

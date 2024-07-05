@@ -1,0 +1,216 @@
+
+.wrapper {
+  width: 80vw;
+  height: 90vh;
+  position: relative;
+  margin: auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border-radius: 2vw;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-text {
+  width: 100%;
+  height: auto;
+  background: linear-gradient(to left, #008000, #53c953);
+  position: absolute;
+  top: -60vh;
+  box-sizing: border-box;
+  padding: 6%;
+  transition: all 0.5s ease-in-out;
+  z-index: 11;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.left-container, .right-container {
+  flex: 1;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  height: auto;
+}
+
+.right-container {
+  flex: 1;
+  height: 60vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  margin: auto;
+  justify-content: center;
+
+}
+
+.right-container h1 {
+  color: #fff;
+  font-size: 24px;
+}
+
+.right-container p {
+  color: whitesmoke;
+  font-size: 16px;
+
+}
+
+
+
+.text {
+  margin-left: 20px;
+  color: #fff;
+  display: none;
+  transition: all 0.5s ease-in-out;
+  transition-delay: 0.3s;
+
+  a, a:visited {
+    font-size: 36px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+  }
+
+  hr {
+    width: 10%;
+    float: left;
+    background-color: #fff;
+    font-size: 16px;
+  }
+
+  input {
+    height: 40px;
+    width: calc(100px + 30vw);
+    border-radius: 2px;
+    border: none;
+    background-color: #444;
+    opacity: 0.6;
+    outline: none;
+    color: #fff;
+    padding-left: 10px;
+    font-size: 18px;
+  }
+
+  input[type=text] {
+    margin-top: 60px;
+  }
+
+  button {
+    margin-top: 60px;
+    height: 60px;
+    width: 240px;
+    outline: none;
+  }
+
+  .login-btn {
+    background: #fff;
+    border: none;
+    color: #696a86;
+    border-radius: 2vw;
+    font-size: 20px;
+  }
+
+  .signup-btn {
+    background: transparent;
+    border: 2px solid #fff;;
+    border-radius: 2px;
+    color: #fff;
+    margin-left: 30px;
+  }
+}
+
+.cta {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #696a86;
+  border: 2px solid #fff;
+  position: absolute;
+  left: 50%;
+  bottom: -60px;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  outline: none;
+  cursor: pointer;
+  z-index: 11;
+
+}
+
+.call-text {
+  background-color: #fff;
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 10%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2vw;
+  text-align: center; /* Ensures text alignment is centered for all child elements */
+}
+
+.call-text h1 {
+  font-size: 42px;
+  color: #696a86;
+  margin: 0; /* Remove margin-top to align with flexbox centering */
+}
+
+.call-text h1 span {
+  color: #333;
+  font-weight: bolder;
+}
+
+.call-text button {
+  height: 40px;
+  width: 180px;
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(to left, #008000, #53c953);
+  color: #fff;
+  font-weight: bolder;
+  margin-top: 30px; /* Adjust or remove margin-top as needed for centering */
+  cursor: pointer;
+  outline: none;
+}
+
+.show-hide {
+  display: block;
+}
+
+.expand {
+  transform: translateY(50vh);
+}
+.input-kod-pocztowy::placeholder {
+  color: white; /* Szary dla kodu pocztowego */
+}
+
+.input-adres::placeholder {
+  color: white; /* Jaśniejszy szary dla adresu */
+}
+@media (max-width: 768px) {
+  .wrapper {
+    flex-direction: column-reverse;
+  }
+  .login-text {
+    flex-direction: column;
+    top: -35vh;
+  }
+  .expand {
+    transform: translateY(32vh);
+  }
+
+}

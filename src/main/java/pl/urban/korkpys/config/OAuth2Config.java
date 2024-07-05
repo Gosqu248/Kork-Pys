@@ -1,4 +1,4 @@
-package pl.urban.korkpys.comarchApi;
+package pl.urban.korkpys.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +18,10 @@ public class OAuth2Config {
 
     @Value("${comarch.client-secret}")
     private String clientSecret;
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
 
     @Bean
     public String getAccessToken() {
