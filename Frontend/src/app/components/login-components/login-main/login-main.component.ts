@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ComarchApiService} from "../../../services/comarch-api.service";
+import {CustomersService} from "../../../services/customers.service";
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import {FaIconComponent} from "@fortawesome/angular-fontawesome";
 import { Router } from '@angular/router';
@@ -21,20 +21,20 @@ export class LoginMainComponent  {
   street: string = '';
   buildingNumber: string = '';
 
-  constructor(private comarchApiService: ComarchApiService, private router: Router) { }
+  constructor(private customerService: CustomersService, private router: Router) { }
 
   onSubmit() {
-    this.comarchApiService.authenticateUser(this.street, this.buildingNumber).subscribe(isAuthenticated => {
-      if (isAuthenticated) {
-        // Navigate to the dashboard or home page
-        this.router.navigate(['/zalogowany']);
-      } else {
-        console.log(this.street)
-        console.log(this.buildingNumber)
-        alert('Authentication failed. Please check your credentials.');
-      }
-    });
-  }
+  this.customerService.authenticateUser(this.street, this.buildingNumber).subscribe((isAuthenticated: boolean) => {
+    if (isAuthenticated) {
+      // Navigate to the dashboard or home page
+      this.router.navigate(['/zalogowany']);
+    } else {
+      console.log(this.street)
+      console.log(this.buildingNumber)
+      alert('Authentication failed. Please check your credentials.');
+    }
+  });
+}
 
   isExpanded = false;
   faChevronDown = faChevronDown;

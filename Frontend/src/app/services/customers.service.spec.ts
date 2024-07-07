@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ComarchApiService } from './comarch-api.service';
+import { CustomersService } from './customers.service';
 
-describe('ComarchApiService', () => {
-  let service: ComarchApiService;
+describe('CustomersService', () => {
+  let service: CustomersService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ComarchApiService);
+    service = TestBed.inject(CustomersService);
   });
 
   it('should be created', () => {

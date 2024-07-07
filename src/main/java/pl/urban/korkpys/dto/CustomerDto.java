@@ -7,6 +7,8 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Setter
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -22,5 +24,6 @@ public class CustomerDto {
     private String city;
     private String postalCode;
 
+    private List<InvoiceDto> invoices;
 
 }
