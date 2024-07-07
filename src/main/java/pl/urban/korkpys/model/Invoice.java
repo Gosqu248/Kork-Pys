@@ -19,7 +19,8 @@ public class Invoice {
     private String invoiceMonth;
     private String invoiceYear;
 
-
-
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 
 }
