@@ -18,7 +18,7 @@ public class CustomerDtoDeserializer extends StdDeserializer<CustomerDto> {
     }
 
     @Override
-    public CustomerDto deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, IOException {
+    public CustomerDto deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException {
         JsonNode node = jp.getCodec().readTree(jp);
 
         CustomerDto customerDto = new CustomerDto();

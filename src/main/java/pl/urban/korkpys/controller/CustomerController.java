@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.urban.korkpys.dto.CustomerDto;
+import pl.urban.korkpys.model.Customer;
 import pl.urban.korkpys.service.CustomerService;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public class CustomerController {
     }
 
     @GetMapping
-    public List<CustomerDto> getAllCustomers() {
+    public List<Customer> getAllCustomers() {
         return customerService.getCustomers();
     }
 }

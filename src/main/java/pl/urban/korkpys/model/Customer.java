@@ -3,7 +3,6 @@ package pl.urban.korkpys.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import java.util.List;
 
 @Setter
 @Getter
@@ -23,7 +22,4 @@ public class Customer {
     private String mail;
     private String phoneNumber;
     private String customerCode;
-
-    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Invoice> invoices;
 }

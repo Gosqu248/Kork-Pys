@@ -19,9 +19,7 @@ public class Invoice {
     private String invoiceMonth;
     private String invoiceYear;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "customer_id", nullable = false)
-    private Customer customer;
+
 
 
 }
