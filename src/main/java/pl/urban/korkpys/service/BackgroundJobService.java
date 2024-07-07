@@ -23,13 +23,19 @@ public class BackgroundJobService {
     @Autowired
     private CustomerRepository customerRepository;
 
-    @Autowired
-    private String accessToken;
+    private final TokenService tokenService;
 
     private static final Logger log = LoggerFactory.getLogger(BackgroundJobService.class);
 
-    @Scheduled(fixedRate = 600000) // Co 60 min
+    @Autowired
+    public BackgroundJobService(CustomerRepository customerRepository,TokenService tokenService) {
+        this.customerRepository = customerRepository;
+        this.tokenService = tokenService;
+    }
+
+    @Scheduled(fixedRate = 600000) // Every 60 min
     public void fetchCustomersInBackground() {
+        String accessToken = tokenService.getAccessToken();
         String url = "https://app.erpxt.pl/api2/public/v1.2/customers";
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();

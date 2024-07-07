@@ -9,6 +9,7 @@ import org.springframework.web.client.RestTemplate;
 import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.Map;
+import java.util.concurrent.locks.ReentrantLock;
 
 @Configuration
 public class OAuth2Config {
@@ -18,13 +19,28 @@ public class OAuth2Config {
 
     @Value("${comarch.client-secret}")
     private String clientSecret;
+    private volatile String accessToken;
+    private volatile long expiryTime = 0;
+    private final ReentrantLock lock = new ReentrantLock();
+
     @Bean
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
 
-    @Bean
     public String getAccessToken() {
+        lock.lock();
+        try {
+            if (accessToken == null || System.currentTimeMillis() >= expiryTime) {
+                refreshToken();
+            }
+            return accessToken;
+        } finally {
+            lock.unlock();
+        }
+    }
+
+    private void refreshToken() {
         RestTemplate restTemplate = new RestTemplate();
         String url = "https://app.erpxt.pl/api2/public/token";
 
@@ -38,8 +54,12 @@ public class OAuth2Config {
         HttpEntity<String> entity = new HttpEntity<>("grant_type=client_credentials", headers);
 
         ResponseEntity<Map> response = restTemplate.exchange(url, HttpMethod.POST, entity, Map.class);
-        Map<String, String> responseBody = response.getBody();
+        Map<String, Object> responseBody = response.getBody();
 
-        return responseBody.get("access_token");
+        if (responseBody != null) {
+            this.accessToken = (String) responseBody.get("access_token");
+            // Set expiry time to current time plus 1 minute
+            this.expiryTime = System.currentTimeMillis() + 60000; // 1 minute in milliseconds
+        }
     }
 }
