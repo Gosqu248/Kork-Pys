@@ -26,12 +26,11 @@ export class LoginMainComponent  {
   onSubmit() {
   this.customerService.authenticateUser(this.street, this.buildingNumber).subscribe((isAuthenticated: boolean) => {
     if (isAuthenticated) {
-      // Navigate to the dashboard or home page
       this.router.navigate(['/zalogowany']);
     } else {
       console.log(this.street)
       console.log(this.buildingNumber)
-      alert('Authentication failed. Please check your credentials.');
+      alert('Nieprawidłowy login lub hasło!');
     }
   });
 }

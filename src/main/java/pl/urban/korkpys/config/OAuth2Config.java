@@ -58,8 +58,8 @@ public class OAuth2Config {
 
         if (responseBody != null) {
             this.accessToken = (String) responseBody.get("access_token");
-            // Set expiry time to current time plus 1 minute
-            this.expiryTime = System.currentTimeMillis() + 60000; // 1 minute in milliseconds
+            // Set expiry time to current time plus 170 seconds
+            this.expiryTime = System.currentTimeMillis() + (170 * 1000); // 170 seconds in milliseconds
         }
     }
 }

@@ -1,0 +1,11 @@
+<div class="main-container">
+  <h2> Dostępne faktury:</h2>
+  <div class="invoice-container">
+    <app-invoice-component
+      *ngFor="let invoice of invoices"
+      [image]="'http://localhost:8080' + invoice.image"
+      [month]="invoice.invoiceMonth"
+      [year]="invoice.invoiceYear">
+    </app-invoice-component>
+  </div>
+</div>

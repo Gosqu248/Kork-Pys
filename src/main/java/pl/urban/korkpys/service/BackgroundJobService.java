@@ -16,6 +16,7 @@ import pl.urban.korkpys.repository.CustomerRepository;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class BackgroundJobService {
@@ -24,13 +25,15 @@ public class BackgroundJobService {
     private CustomerRepository customerRepository;
 
     private final TokenService tokenService;
+    private final CustomerService customerService;
 
     private static final Logger log = LoggerFactory.getLogger(BackgroundJobService.class);
 
     @Autowired
-    public BackgroundJobService(CustomerRepository customerRepository,TokenService tokenService) {
+    public BackgroundJobService(CustomerRepository customerRepository, TokenService tokenService, CustomerService customerService) {
         this.customerRepository = customerRepository;
         this.tokenService = tokenService;
+        this.customerService = customerService;
     }
 
     @Scheduled(fixedRate = 600000) // Every 60 min
@@ -50,9 +53,14 @@ public class BackgroundJobService {
                 List<CustomerDto> customerDtos = objectMapper.readValue(customersJson, new TypeReference<List<CustomerDto>>() {});
                 List<Customer> customers = customerDtos.stream()
                         .map(CustomerMapper::toEntity)
-                        .toList();
+                        .filter(customer -> !customerRepository.existsByCustomerCode(customer.getCustomerCode())) // Filter out duplicates based on email
+                        .collect(Collectors.toList());
                 customerRepository.saveAll(customers);
-                log.info("Successfully fetched and saved customers in background.");
+                log.info("Successfully fetched and saved unique customers in background.");
+
+                // Remove duplicates after saving new customers
+                customerService.removeDuplicateCustomers();
+
             } catch (IOException e) {
                 log.error("Error parsing customer data: " + e.getMessage());
             }

@@ -1,0 +1,74 @@
+#invoice-container {
+  width: 60vw; /* Adjusted width for a wider container */
+  min-height: 60px; /* Changed to min-height to accommodate content expansion */
+  margin: 10px auto; /* Reduced top and bottom margin, centered horizontally */
+  border: 2px solid #ccc; /* Thicker border with a lighter color */
+  padding: 15px; /* Adjusted padding for content spacing */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtler shadow for depth */
+  background-color: #f9f9f9; /* Lighter background for a modern look */
+  font-family: 'Segoe UI', sans-serif; /* Updated font for readability */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align items to the start for vertical expansion */
+  justify-content: space-between; /* Maintain space between elements */
+}
+
+#invoice-container .header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+#dynamicButton {
+  width: 300px;
+  height: 100px;
+  margin-left: 3vw; /* Added margin left for the button */
+  background-image: linear-gradient(to right, #008000, #00ff00); /* Gradient zielony z dodatkowymi odcieniami */
+  color: white; /* Example: Change button text color */
+  border: none; /* Example: Remove border */
+  padding: 10px 15px; /* Example: Adjust padding */
+  border-radius: 5px; /* Example: Add border radius */
+  font-size: 18px; /* Example: Change font size */
+}
+
+#dynamicImg {
+  width: 30vw;
+  margin-right: 3vw; /* Added margin right for the image */
+  height: 70vh; /* Full height of the container */
+  order: 2; /* Image on the right */
+}
+
+
+@media (max-width: 600px) {
+  #invoice-container {
+    width: 80vw; /* Adjusted width for smaller screens */
+    margin: auto;
+  }
+
+  .main {
+    flex-direction: column; /* Adjusted flex direction for smaller screens */
+  }
+
+  #dynamicButton {
+    width: 90%; /* Adjusted button width for smaller screens */
+    margin: 10px auto; /* Centered button */
+  }
+
+  #dynamicImg {
+    width: 90%; /* Adjusted image width for smaller screens */
+    height: auto; /* Allow image to resize proportionally */
+    margin: 10px auto; /* Centered image */
+    order: 1; /* Image on top */
+  }
+
+}

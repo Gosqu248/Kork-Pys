@@ -34,7 +34,7 @@ export const routes: Routes = [
 
   {
     path: 'zalogowany',
-    loadComponent: () => import('./components/login-components/home-user/home-user.component').then(m => m.HomeUserComponent),
+    loadComponent: () => import('./components/login-components/home-customer/home-customer.component').then(m => m.HomeCustomerComponent),
     canActivate: [authGuard]
 
   }
