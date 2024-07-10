@@ -240,7 +240,7 @@ h1, h2, p {
 
   .text-container2 h3 {
     font-size: 4vw;
-    width: 80%;
+    width: auto;
     margin: auto;
     margin-bottom: 1vh;
   }
