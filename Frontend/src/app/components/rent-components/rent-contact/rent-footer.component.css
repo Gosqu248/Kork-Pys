@@ -34,9 +34,8 @@
 
 .label {
   font-weight: bold;
-  color: darkblue;
+  color: darkred;
 }
-
 
 @media(max-width: 1025px) {
   #contact-container {

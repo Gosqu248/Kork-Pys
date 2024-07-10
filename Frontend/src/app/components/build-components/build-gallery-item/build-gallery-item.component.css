@@ -24,3 +24,9 @@
   object-fit: cover;
 }
 
+@media (max-width: 1025px) {
+  .image-container {
+    width: 70vw;
+    height: 35vh;
+  }
+}

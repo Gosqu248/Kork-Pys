@@ -1,12 +1,10 @@
 #strona-glowna {
   /* Dodaj style dla sekcji "strona-glowna" */
-  padding: 5vw;
-  height: 55vh;
-  border-radius: 0 0 1vw 1vw;
-  box-shadow: 0 0.2vw 0.7vw 0 #dada3f;
-  align-items: center;
+  height: auto;
   justify-content: center;
   display: flex;
+  border-radius: 0 0 1vw 1vw;
+  box-shadow: 0 0.2vw 0.7vw 0 #dada3f;
 }
 
 #strona-glowna .spotlight {
@@ -23,7 +21,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-right: 5vw;
+  margin: 5vw;
 }
 
 #strona-glowna .spotlight .content .major {
@@ -35,6 +33,8 @@
 #strona-glowna .spotlight .content p {
   font-size: 1.5vw;
   text-align: left;
+  margin-top: 0; /* Adjust or remove the top margin */
+  margin-bottom: 0; /* Adjust or remove the bottom margin */
 }
 
 #strona-glowna .spotlight .image {
@@ -42,6 +42,44 @@
   height: 40vh;
   background-image: url('../../../../../../src/main/resources/static/img/logo-hds.png');
   background-size: cover;
-  background-position: 40% center; /* Add this line */
+  background-position: 60% center; /* Add this line */
   border-radius: 11vw 20vh 11vw 20vh;
+  align-self: center;
+}
+
+@media (max-width: 1025px) {
+  .spotlight {
+    flex-direction: column;
+    width: 90%;
+
+  }
+
+  #strona-glowna .spotlight .content {
+    font-size: 1.2em;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2vw;
+  }
+
+  #strona-glowna .spotlight .content h2 {
+    font-size: 6vw; /* Adjusted font size */
+  }
+
+  #strona-glowna .spotlight .content p {
+    font-size: 4.5vw; /* Adjusted font size */
+    color: #333; /* Example color change */
+  }
+
+  #strona-glowna .spotlight .image {
+    width: 70vw;
+    height: 40vh;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 70%;
+  }
+
 }

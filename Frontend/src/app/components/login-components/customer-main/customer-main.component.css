@@ -23,9 +23,9 @@
   margin: auto;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 1025px) {
   .main-container {
-    width: 90vw;
+    width: auto;
     margin-left: 0;
   }
 }

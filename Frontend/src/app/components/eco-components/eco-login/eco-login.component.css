@@ -20,7 +20,7 @@
 }
 
 .content h2 {
-  font-size: 1.7vw;
+  font-size: 28px;
 }
 
 .button-link {
@@ -35,4 +35,15 @@
 
 .button-link:hover {
   background-color: #00ff00;
+}
+
+@media (max-width: 1025px) {
+  .content{
+    flex-direction: column;
+  }
+
+  .button-link {
+    font-size: 20px;
+    padding: 2vh 3vw;
+  }
 }

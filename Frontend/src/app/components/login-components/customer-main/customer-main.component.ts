@@ -26,7 +26,6 @@ export class CustomerMainComponent implements OnInit{
     if(this.customer_id != null){
       this.invoiceService.getInvoicesByCustomerId(this.customer_id).subscribe(data => {
         this.invoices = data;
-        console.log(this.invoices);
       });
     }
   }

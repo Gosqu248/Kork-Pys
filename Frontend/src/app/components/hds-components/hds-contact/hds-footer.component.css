@@ -18,8 +18,6 @@
   font-size: 2vw; /* Zmienione z 4vw na 40px */
 }
 
-
-
 .contact-info p {
   font-size: 1.2vw; /* Zmienione z 1.2vw na 12px */
 }
@@ -34,9 +32,8 @@
 
 .label {
   font-weight: bold;
-  color: darkblue;
+  color: #8f5601;
 }
-
 
 @media(max-width: 1025px) {
   #contact-container {

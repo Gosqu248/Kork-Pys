@@ -46,3 +46,30 @@
   border-radius: 11vw 20vh 11vw 20vh;
   align-self: center;
 }
+
+@media (max-width: 1025px) {
+  .spotlight {
+    flex-direction: column;
+    width: 90%;
+
+  }
+
+  #strona-glowna .spotlight .content h2 {
+    font-size: 6vw; /* Adjusted font size */
+  }
+
+  #strona-glowna .spotlight .content p {
+    font-size: 4.5vw; /* Adjusted font size */
+    color: #333; /* Example color change */
+  }
+
+  #strona-glowna .spotlight .image {
+    width: 70vw;
+    height: 40vh;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 70%;
+  }
+
+}

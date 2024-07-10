@@ -1,14 +1,27 @@
 nav {
+  background: seagreen;
   width: 100%;
   height: 12vh;
-  background: seagreen;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  margin: auto;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  position: relative; /* Ensure children can be positioned relative to nav */
 }
 
-
+#nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: whitesmoke;
+  font-size: 3vh;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1rem;
+}
 
 nav ul {
   list-style-type: none;
@@ -18,7 +31,7 @@ nav ul {
   width: 80%;
   height: 100%;
   font-size: 3vh;
-  margin: auto;
+  margin: 0;
   font-family: 'Roboto', sans-serif;
   font-weight: bolder;
   color: whitesmoke;
@@ -31,4 +44,54 @@ li:hover {
   border-radius: 2vh;
 }
 
+@media (max-width: 1025px) {
+  nav {
+    height: 8vh;
+  }
 
+  #nav-toggle {
+    display: block;
+  }
+
+  nav ul {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the left */
+    width: 100%;
+    padding: 0;
+  }
+
+  .nav-expanded {
+    height: auto; /* Adjust this value as needed to fit content */
+  }
+
+  nav ul.expanded {
+    display: flex;
+  }
+
+  nav ul li {
+    width: 100%;
+    text-align: left; /* Align text to the left */
+    padding: 1rem 0;
+  }
+
+  li:hover {
+    background: none;
+    padding: 1vw;
+    box-sizing: border-box;
+    border-radius: 2vh;
+  }
+
+
+  #nav-menu {
+    display: none; /* Hide by default */
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the left */
+    transition: all 0.3s ease; /* Smooth transition for expanding */
+  }
+
+  #nav-menu.expanded {
+    display: flex; /* Show menu */
+    /* Additional styles for expanded state (e.g., adjust height, opacity) */
+  }
+}

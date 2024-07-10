@@ -11,6 +11,16 @@ import {ViewportScroller} from "@angular/common";
 export class RentNavComponent {
   constructor(private viewportScroller: ViewportScroller) { }
   scrollToElement(elementId: string): void {
-  this.viewportScroller.scrollToAnchor(elementId);
-}
+    this.viewportScroller.scrollToAnchor(elementId);
+  }
+
+  toggleMenu() {
+    const navMenu = document.getElementById('nav-menu');
+    const nav = document.getElementById('nav');
+    if (navMenu && nav) {
+      navMenu.classList.toggle('expanded');
+      nav.classList.toggle('nav-expanded');
+    }
+  }
+
 }

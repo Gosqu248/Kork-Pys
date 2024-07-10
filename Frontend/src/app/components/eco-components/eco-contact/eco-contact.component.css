@@ -38,5 +38,49 @@
 #sec {
   margin-top: -1vh;
   margin-left: 11vw;
+}
+
+
+@media(max-width: 1025px) {
+  #contact-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: auto; /* Maintain full height of the viewport */
+    padding: 0; /* Remove default padding */
+    overflow: hidden;
+  }
+
+  .contact-info {
+    width: 65%; /* Zmienione z 30% na 300px */
+  }
+
+  .contact-info h2 {
+    font-size: 7vw; /* Zmienione z 4vw na 40px */
+    margin-top: 15vh;
+  }
+
+  .contact-info p {
+    font-size: 5vw; /* Zmienione z 1.2vw na 12px  */
+  }
+
+  .google-map iframe{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 70vw;
+    height: 30vh;
+    margin-bottom: 20px;
+  }
+
+  .contact-info p span {
+    display: block; /* Makes the span element behave like a block element, moving the content after it to a new line */
+  }
+
+  #sec {
+    margin-top: -1vh;
+    margin-left: 0;
+  }
 
 }

@@ -174,3 +174,81 @@ h1, h2, p {
 .fas {
   color: antiquewhite;
 }
+
+@media(max-width: 1025px) {
+
+  #about-banner {
+
+    width: 100%;
+  }
+
+  .first-container {
+    flex-direction: column;
+    height: 85vh;
+  }
+  h1 {
+    font-size: 6vw;
+  }
+
+  .container {
+    width: 70vw;
+    height: 50vw;
+  }
+
+  .container-lightskyblue {
+    width: 70vw;
+    height: 50vw;
+  }
+
+  .text-container1 {
+    width: 70vw;
+    height: auto;
+  }
+
+  .text-container1 h2, .text-container2 h2 {
+    font-size: 7vw;
+  }
+
+  .text-container1 p{
+    font-size: 5vw;
+    margin-bottom: 0.01vw;
+    margin-left: 2vw;
+    line-height: 6vw;
+    color: lightgray;
+  }
+
+  .second-container {
+    height: 50vh;
+  }
+
+  .whyus-container {
+    flex-direction: column;
+    margin-top: 10px;
+    width: auto;
+    height: 30vh;
+  }
+
+  .why-container {
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    margin: auto;
+    text-align: center;
+    height: auto;
+  }
+
+  .text-container2 h3 {
+    font-size: 4vw;
+    width: 80%;
+    margin: auto;
+    margin-bottom: 1vh;
+  }
+
+  .why-container p {
+    font-size: 3.8vw;
+    line-height: 4vw;
+    margin: auto;
+    width: 80%;
+  }
+}
+

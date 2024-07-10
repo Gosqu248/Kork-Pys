@@ -9,10 +9,11 @@
   justify-content: center;
   align-items: center;
   width: 20vw;
-  height: 42vh;
+  height: 45vh;
   margin: 3vh;
   background-image: linear-gradient(to bottom, #ff0000, #ff3333, #ff6666, #ff9999, #ffcccc, #ffffff);
 }
+
 
 .card:hover {
   transform: translateY(-5px);
@@ -52,3 +53,32 @@
   width: 100%;
 
 }
+
+
+@media (max-width: 1025px) {
+  .card {
+    width: 60vw;
+    height: auto;
+
+  }
+
+  .image-div {
+    height: 15vh;
+  }
+
+  .card-body {
+    height: auto;
+  }
+
+  .card-title {
+    margin-top: 50px;
+    font-size: 5vw;
+    height: auto;
+  }
+
+  .card-text {
+    font-size: 4vw;
+    height: auto;
+  }
+}
+

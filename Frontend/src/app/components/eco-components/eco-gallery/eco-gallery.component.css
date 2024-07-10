@@ -25,3 +25,10 @@
   border-bottom: 0.05vw solid whitesmoke; /* Dodaj linię na dole */
   margin: auto;
 }
+
+
+@media(max-width: 1025px) {
+  .centered-text {
+    font-size: 6vw;
+  }
+}

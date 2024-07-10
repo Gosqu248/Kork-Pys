@@ -2,6 +2,7 @@
   width: 95%; /* Zajmuje całą dostępną szerokość */
   height: 100%; /* Zajmuje całą dostępną wysokość */
   margin: auto;
+  margin-top: 5vh;
   margin-bottom: 5vh; /* Dodane */
 }
 
@@ -23,4 +24,11 @@
   padding-bottom: 7vh;
   border-bottom: 0.05vw solid whitesmoke; /* Dodaj linię na dole */
   margin: auto;
+}
+
+
+@media(max-width: 1025px) {
+  .centered-text {
+    font-size: 6vw;
+  }
 }

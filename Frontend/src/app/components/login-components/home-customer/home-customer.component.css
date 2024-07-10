@@ -26,7 +26,7 @@
   margin: auto;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 1025px) {
   .main {
     flex-direction: column;
   }

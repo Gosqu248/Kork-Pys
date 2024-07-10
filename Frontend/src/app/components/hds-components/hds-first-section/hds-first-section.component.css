@@ -30,6 +30,15 @@
   margin: auto;
 }
 
+@media (max-width: 1025px) {
+  #major {
+    font-size: 5vw;
+  }
+
+  .items-contianer{
+    flex-direction: column;
+  }
+}
 
 
 

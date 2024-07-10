@@ -72,6 +72,7 @@
   align-content: center;
   margin-left: 3vw;
 }
+
 .service p {
   white-space: normal; /* Pozwala tekstu przechodzić do nowej linii */
   text-align: left; /* Wyrównuje tekst do lewej strony */
@@ -120,3 +121,51 @@ h1 {
   font-size: 1.2vw;
 }
 
+
+@media (max-width: 1025px) {
+  #background-image {
+    height: auto; /* Adjusted to take full height */
+    margin: auto;
+    overflow: hidden;
+    padding-bottom: 420px;
+  }
+
+  .content {
+    transform: translateY(0%); /* Adjusted to move the text higher */
+  }
+
+  h1 {
+    font-size: 6vw;
+
+  }
+
+  .service-container {
+    flex-direction: row; /* Makes each service take full width one after another */
+  }
+
+  .service, .grey-service {
+    width: 90%; /* Sets the service blocks to take 80% of the container width */
+    margin: 2vw auto; /* Centers the service blocks and maintains margin */
+    height: auto; /* Adjusts the height automatically based on content */
+  }
+
+  h2 {
+    font-size: 4vw; /* Increases the font size of h2 for better readability */
+  }
+
+  .service p, .grey-service p {
+    width: 70%;
+    font-size: 3.5vw; /* Increases the font size of p for better readability */
+  }
+
+  #text3 {
+    width: 70%;
+    font-size: 3.5vw;
+
+  }
+
+  #text4 {
+    width: 70%;
+    font-size: 3.5vw;
+  }
+}

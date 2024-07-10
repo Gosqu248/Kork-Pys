@@ -49,7 +49,7 @@
 }
 
 
-@media (max-width: 600px) {
+@media (max-width: 1025px) {
   #invoice-container {
     width: 80vw; /* Adjusted width for smaller screens */
     margin: auto;
