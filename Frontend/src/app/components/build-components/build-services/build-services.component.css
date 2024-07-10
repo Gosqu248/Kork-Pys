@@ -126,8 +126,6 @@ h1 {
   #background-image {
     height: auto; /* Adjusted to take full height */
     margin: auto;
-    overflow: hidden;
-    padding-bottom: 420px;
   }
 
   .content {
@@ -141,6 +139,8 @@ h1 {
 
   .service-container {
     flex-direction: row; /* Makes each service take full width one after another */
+    height: auto;
+    margin-bottom: 3vh;
   }
 
   .service, .grey-service {

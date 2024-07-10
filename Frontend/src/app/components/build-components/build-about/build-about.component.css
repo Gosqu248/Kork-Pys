@@ -184,7 +184,7 @@ h1, h2, p {
 
   .first-container {
     flex-direction: column;
-    height: 85vh;
+    height: auto;
   }
   h1 {
     font-size: 6vw;
@@ -218,14 +218,14 @@ h1, h2, p {
   }
 
   .second-container {
-    height: 50vh;
+    height: auto;
   }
 
   .whyus-container {
     flex-direction: column;
-    margin-top: 10px;
     width: auto;
-    height: 30vh;
+    height: auto;
+    margin-bottom: 3vh;
   }
 
   .why-container {
@@ -235,6 +235,7 @@ h1, h2, p {
     margin: auto;
     text-align: center;
     height: auto;
+    margin-bottom: 5vh;
   }
 
   .text-container2 h3 {
