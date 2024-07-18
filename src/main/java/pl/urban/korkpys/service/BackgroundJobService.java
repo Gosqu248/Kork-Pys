@@ -16,6 +16,7 @@ import pl.urban.korkpys.repository.CustomerRepository;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -51,15 +52,62 @@ public class BackgroundJobService {
             try {
                 ObjectMapper objectMapper = new ObjectMapper();
                 List<CustomerDto> customerDtos = objectMapper.readValue(customersJson, new TypeReference<List<CustomerDto>>() {});
-                List<Customer> customers = customerDtos.stream()
+                List<Customer> customersToUpdateOrSave = customerDtos.stream()
                         .map(CustomerMapper::toEntity)
-                        .filter(customer -> !customerRepository.existsByCustomerCode(customer.getCustomerCode())) // Filter out duplicates based on email
-                        .collect(Collectors.toList());
-                customerRepository.saveAll(customers);
-                log.info("Successfully fetched and saved unique customers in background.");
+                        .map(customer -> {
+                            if (customerRepository.existsByCustomerCode(customer.getCustomerCode())) {
+                                Customer existingCustomer = customerRepository.findByCustomerCode(customer.getCustomerCode());
+                                boolean needsUpdate = false;
 
-                // Remove duplicates after saving new customers
-                customerService.removeDuplicateCustomers();
+                                // Check and update each field
+                                if (!Objects.equals(existingCustomer.getName(), customer.getName())) {
+                                    existingCustomer.setName(customer.getName());
+                                    needsUpdate = true;
+                                }
+                                if (!Objects.equals(existingCustomer.getMail(), customer.getMail())) {
+                                    existingCustomer.setMail(customer.getMail());
+                                    needsUpdate = true;
+                                }
+                                if (!Objects.equals(existingCustomer.getPhoneNumber(), customer.getPhoneNumber())) {
+                                    existingCustomer.setPhoneNumber(customer.getPhoneNumber());
+                                    needsUpdate = true;
+                                }
+                                if (!Objects.equals(existingCustomer.getStreet(), customer.getStreet())) {
+                                    existingCustomer.setStreet(customer.getStreet());
+                                    needsUpdate = true;
+                                }
+                                if (!Objects.equals(existingCustomer.getBuildingNumber(), customer.getBuildingNumber())) {
+                                    existingCustomer.setBuildingNumber(customer.getBuildingNumber());
+                                    needsUpdate = true;
+                                }
+                                if (!Objects.equals(existingCustomer.getCity(), customer.getCity())) {
+                                    existingCustomer.setCity(customer.getCity());
+                                    needsUpdate = true;
+                                }
+                                if (!Objects.equals(existingCustomer.getPostalCode(), customer.getPostalCode())) {
+                                    existingCustomer.setPostalCode(customer.getPostalCode());
+                                    needsUpdate = true;
+                                }
+                                if (!Objects.equals(existingCustomer.getCustomerCode(), customer.getCustomerCode())) {
+                                    existingCustomer.setCustomerCode(customer.getCustomerCode());
+                                    needsUpdate = true;
+                                }
+
+                                if (needsUpdate) {
+                                    log.info("Updating customer with code: " + customer.getCustomerCode());
+                                    customerService.saveCustomer(existingCustomer);
+                                    return existingCustomer;
+                                }
+                                return existingCustomer;
+                            } else {
+                                customerService.saveCustomer(customer);
+                                return customer;
+                            }
+                        })
+                        .collect(Collectors.toList());
+
+                customerRepository.saveAll(customersToUpdateOrSave);
+                log.info("Successfully fetched and updated or saved unique customers in background.");
 
             } catch (IOException e) {
                 log.error("Error parsing customer data: " + e.getMessage());

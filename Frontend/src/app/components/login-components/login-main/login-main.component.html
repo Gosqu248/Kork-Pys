@@ -8,9 +8,10 @@
         <a>Logowanie</a>
         <hr>
         <br>
-        <input type="text" [(ngModel)]="street" name="Miejscowość" placeholder="Miejscowość">
+        <input type="text" [(ngModel)]="login" name="login" placeholder="Login">
         <br>
-        <input type="text" [(ngModel)]="buildingNumber" name="Numer domu" placeholder="Numer domu">
+        <br>
+        <input type="password" [(ngModel)]="password" name="password" placeholder="Hasło">
         <br>
         <button type="submit" class="login-btn">Zaloguj się</button>
       </form>
@@ -18,8 +19,8 @@
     <div class="right-container">
       <h1>Jak się zalogować?</h1>
       <br>
-      <p>1. Wprowadź swój kod pocztowy.</p>
-      <p>2. Wprowadź swój adres.</p>
+      <p>1. Login to twój email lub numer telefonu, <br/> np: 123 456 789</p>
+      <p>2. Hasło to miejscowość/ulica + nr domu/budynku, <br> np. Słoneczna4, <br> jeśli nie zostało zmienione na indywidualne.</p>
       <p>3. Naciśnij na przycisk "Zaloguj się".</p>
       <br>
       <br>

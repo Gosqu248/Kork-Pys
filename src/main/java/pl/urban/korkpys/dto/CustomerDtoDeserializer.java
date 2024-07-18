@@ -33,6 +33,7 @@ public class CustomerDtoDeserializer extends StdDeserializer<CustomerDto> {
             customerDto.setBuildingNumber(addressNode.get("BuildingNumber").asText());
             customerDto.setCity(addressNode.get("City").asText());
             customerDto.setPostalCode(addressNode.get("PostalCode").asText());
+
         }
 
         return customerDto;

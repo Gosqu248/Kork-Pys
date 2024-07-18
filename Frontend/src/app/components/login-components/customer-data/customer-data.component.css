@@ -43,8 +43,9 @@
   text-align: left;
   padding-left: 20px;
   word-wrap: break-word;
+  overflow-wrap: break-word; /* Ensure breaking and wrapping of long words like email addresses */
   font-size: 22px;
-
+  max-width: 60%; /* Optional: You might adjust this based on your layout needs */
 }
 
 @media (max-width: 1025px) {

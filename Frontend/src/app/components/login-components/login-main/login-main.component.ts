@@ -18,18 +18,18 @@ import {FormsModule} from "@angular/forms";
 export class LoginMainComponent  {
 
 
-  street: string = '';
-  buildingNumber: string = '';
+  login: string = '';
+  password: string = '';
 
   constructor(private customerService: CustomersService, private router: Router) { }
 
   onSubmit() {
-  this.customerService.authenticateUser(this.street, this.buildingNumber).subscribe((isAuthenticated: boolean) => {
+  this.customerService.authenticateUser(this.login, this.password).subscribe((isAuthenticated: boolean) => {
     if (isAuthenticated) {
       this.router.navigate(['/zalogowany']);
     } else {
-      console.log(this.street)
-      console.log(this.buildingNumber)
+      console.log(this.login)
+      console.log(this.password)
       alert('Nieprawidłowy login lub hasło!');
     }
   });

@@ -35,15 +35,25 @@ export class CustomersService {
     return this.currentUser ? this.currentUser.id : null;
   }
 
-  authenticateUser(street: string, buildingNumber: string): Observable<boolean> {
+  authenticateUser(login: string, password: string): Observable<boolean> {
     return this.http.get<Customer[]>(`${this.apiUrl}`).pipe(
       tap(customers => console.log('Customers data:', customers)),
       map(customers => customers.some(customer => {
-        const customerStreet = customer.street.toLowerCase();
-        const inputStreet = street.toLowerCase();
-        const customerBuildingNumber = customer.buildingNumber;
+        // Split the password into street and buildingNumber
+        const [inputStreet, inputBuildingNumber] = password.split(" ");
+        const customerMail = customer.mail;
+        const customerAddress = customer.street.toLowerCase() + customer.buildingNumber;
 
-        const authenticated = customerStreet === inputStreet && customerBuildingNumber === buildingNumber;
+        let loginAuth = customerMail === login;
+
+        if(!loginAuth) {
+          loginAuth = customer.phoneNumber === login;
+        }
+        const passwordAuth = customerAddress.toLowerCase() === password.toLowerCase();
+
+        const authenticated = loginAuth && passwordAuth;
+
+
         if (authenticated) {
           this.isAuthenticated = true;
           localStorage.setItem('isAuthenticated', 'true'); // Store authentication state in localStorage

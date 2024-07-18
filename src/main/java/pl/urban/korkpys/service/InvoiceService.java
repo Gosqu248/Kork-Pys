@@ -1,12 +1,17 @@
 package pl.urban.korkpys.service;
 
-import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import pl.urban.korkpys.model.Customer;
 import pl.urban.korkpys.model.Invoice;
 import pl.urban.korkpys.repository.InvoiceRepository;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,50 +19,25 @@ import java.util.List;
 public class InvoiceService {
 
     private final InvoiceRepository invoiceRepository;
+    private final CustomerService customerService;
+    private final String uploadDir = "uploaded-images";
 
     @Autowired
-    public InvoiceService(InvoiceRepository invoiceRepository) {
+    public InvoiceService(InvoiceRepository invoiceRepository, CustomerService customerService) {
         this.invoiceRepository = invoiceRepository;
+        this.customerService = customerService;
     }
 
-    @Autowired
-    private CustomerService customerService;
-
-    public List<Invoice> createSampleInvoiceList() {
-        List<Invoice> invoiceList = new ArrayList<>();
-
-        String [][] invoiceData= {
-                {"faktura.jpg", "Styczeń", "2024", "138"},
-                {"faktura.jpg", "Luty", "2024", "138"},
-                {"faktura.jpg", "Marzec", "2024", "138"},
-                {"faktura.jpg", "Kwiecień", "2024", "138"},
-                {"faktura.jpg", "Maj", "2024", "138"},
-
-        };
-
-        for(String[] data : invoiceData) {
-            Invoice invoice = new Invoice();
-            invoice.setImage("/img/" + data[0]);
-            invoice.setInvoiceMonth(data[1]);
-            invoice.setInvoiceYear(data[2]);
-            Long customerId = Long.parseLong(data[3]); // Convert the String to Long
-            Customer customer = customerService.getCustomerById(customerId); // Retrieve the Customer object
-            invoice.setCustomer(customer); // Set the Customer for the Invoice
-            invoiceList.add(invoice);
-        }
-
-        return invoiceList;
-    }
-
-    @PostConstruct
-    private void initDatabaseWithSampleInvoices() {
-        if (invoiceRepository.count() == 0) { // Check if the database is empty
-            createSampleInvoiceList().forEach(this::addInvoice); // Add sample invoices
-        }
+    public Customer getCustomerById(Long id) {
+        return customerService.getCustomerById(id);
     }
 
     public List<Invoice> findAllInvoices() {
         return invoiceRepository.findAll();
+    }
+
+    public void addInvoice(Invoice invoice) {
+        invoiceRepository.save(invoice);
     }
 
     public void deleteInvoice(Long id) {
@@ -68,7 +48,16 @@ public class InvoiceService {
         invoiceRepository.updateInvoice(id, image, invoiceMonth, invoiceYear);
     }
 
-    public void addInvoice(Invoice invoice) {
-        invoiceRepository.save(invoice);
+    public String saveImage(MultipartFile file) throws IOException {
+        Path uploadPath = Paths.get(uploadDir);
+        if (!Files.exists(uploadPath)) {
+            Files.createDirectories(uploadPath);
+        }
+
+        String fileName = file.getOriginalFilename();
+        Path filePath = uploadPath.resolve(fileName);
+        Files.write(filePath, file.getBytes());
+
+        return filePath.toString();
     }
 }
