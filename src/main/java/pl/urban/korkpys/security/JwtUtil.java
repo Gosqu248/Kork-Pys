@@ -25,7 +25,7 @@ public class JwtUtil {
 
     @PostConstruct
     public void init() {
-        rotateKey(); // Generujemy pierwszy klucz
+        rotateKey();
     }
 
     public String extractUsername(String token) {
@@ -41,7 +41,7 @@ public class JwtUtil {
         return claimsResolver.apply(claims);
     }
 
-    private Claims extractAllClaims(String token) {
+    public Claims extractAllClaims(String token) {
         return Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(token).getBody();
     }
 
