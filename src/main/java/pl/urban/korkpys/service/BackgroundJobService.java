@@ -10,6 +10,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import pl.urban.korkpys.dto.CustomerDto;
+import pl.urban.korkpys.formatter.DataFormatter;
 import pl.urban.korkpys.mapper.CustomerMapper;
 import pl.urban.korkpys.model.Customer;
 import pl.urban.korkpys.repository.CustomerRepository;
@@ -55,6 +56,10 @@ public class BackgroundJobService {
                 List<Customer> customersToUpdateOrSave = customerDtos.stream()
                         .map(CustomerMapper::toEntity)
                         .map(customer -> {
+                            customer.setName(DataFormatter.formatNameOrCity(customer.getName()));
+                            customer.setCity(DataFormatter.formatNameOrCity(customer.getCity()));
+                            customer.setStreet(DataFormatter.formatStreet(customer.getStreet()));
+
                             if (customerRepository.existsByCustomerCode(customer.getCustomerCode())) {
                                 Customer existingCustomer = customerRepository.findByCustomerCode(customer.getCustomerCode());
                                 boolean needsUpdate = false;
