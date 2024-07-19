@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {CustomersService} from "../../../services/customers.service";
 import {Customer} from "../../../models/customer.model";
 
@@ -9,13 +9,8 @@ import {Customer} from "../../../models/customer.model";
   templateUrl: './customer-data.component.html',
   styleUrl: './customer-data.component.css'
 })
-export class CustomerDataComponent implements OnInit{
+export class CustomerDataComponent {
 
-  customer: Customer | null=null;
+  @Input() customer: Customer | undefined = undefined;
 
-  constructor(private customerService: CustomersService) { }
-
-  ngOnInit(): void {
-    this.customer = this.customerService.getCustomer();
-  }
 }

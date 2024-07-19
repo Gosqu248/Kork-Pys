@@ -1,5 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {CustomersService} from "../../../services/customers.service";
+import {ActivatedRoute} from "@angular/router";
+import {Customer} from "../../../models/customer.model";
 
 @Component({
   selector: 'app-customer-welcome',
@@ -8,14 +10,9 @@ import {CustomersService} from "../../../services/customers.service";
   templateUrl: './customer-welcome.component.html',
   styleUrl: './customer-welcome.component.css'
 })
-export class CustomerWelcomeComponent implements OnInit{
+export class CustomerWelcomeComponent {
 
-  name: string = '';
 
-  constructor(private customerService: CustomersService) {
-  }
+  @Input() customerName: string | undefined = undefined;
 
-  ngOnInit() {
-    this.name = this.customerService.getCustomerName();
-  }
 }

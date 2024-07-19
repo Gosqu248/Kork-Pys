@@ -1,8 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {InvoiceService} from "../../../services/invoice.service";
-import {CustomersService} from "../../../services/customers.service";
-import {InvoiceComponentComponent} from "../invoice-component/invoice-component.component";
+import {Component, Input, OnInit} from '@angular/core';
+import { InvoiceService } from "../../../services/invoice.service";
+import { CustomersService } from "../../../services/customers.service";
+import { InvoiceComponentComponent } from "../invoice-component/invoice-component.component";
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+import {Customer} from "../../../models/customer.model";
 
 @Component({
   selector: 'app-customer-main',
@@ -14,20 +16,21 @@ import { CommonModule } from '@angular/common';
   templateUrl: './customer-main.component.html',
   styleUrl: './customer-main.component.css'
 })
-export class CustomerMainComponent implements OnInit{
+export class CustomerMainComponent {
 
-  public customer_id: number | null = null;
+  @Input() customerId: number | undefined = undefined;
+
   public invoices: any;
 
-  constructor(private customerService: CustomersService, private invoiceService: InvoiceService) {}
-
-  ngOnInit() {
-    this.customer_id = this.customerService.getCustomerId();
-    if(this.customer_id != null){
-      this.invoiceService.getInvoicesByCustomerId(this.customer_id).subscribe(data => {
-        this.invoices = data;
-      });
-    }
-  }
-
+  // ngOnInit() {
+  //   const customerId = +this.route.snapshot.params['customerId']; // Convert to number with +
+  //   this.customerService.getCustomerById(customerId).subscribe(customer => {
+  //     this.customer_id = customer.id;
+  //   });
+  //   if (this.customer_id != null) {
+  //     this.invoiceService.getInvoicesByCustomerId(this.customer_id).subscribe(data => {
+  //       this.invoices = data;
+  //     });
+  //   }
+  // }
 }

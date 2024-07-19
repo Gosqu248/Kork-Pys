@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {CustomersService} from "../../../services/customers.service";
+import { Component } from '@angular/core';
+import { AuthService } from "../../../services/auth.service"; // Import AuthService
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
-import {FaIconComponent} from "@fortawesome/angular-fontawesome";
+import { FaIconComponent } from "@fortawesome/angular-fontawesome";
 import { Router } from '@angular/router';
-import {FormsModule} from "@angular/forms";
+import { FormsModule } from "@angular/forms";
 
 @Component({
   selector: 'app-login-main',
@@ -15,25 +15,24 @@ import {FormsModule} from "@angular/forms";
   templateUrl: './login-main.component.html',
   styleUrl: './login-main.component.css'
 })
-export class LoginMainComponent  {
-
+export class LoginMainComponent {
 
   login: string = '';
   password: string = '';
 
-  constructor(private customerService: CustomersService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) { } // Use AuthService
 
   onSubmit() {
-  this.customerService.authenticateUser(this.login, this.password).subscribe((isAuthenticated: boolean) => {
-    if (isAuthenticated) {
-      this.router.navigate(['/zalogowany']);
-    } else {
-      console.log(this.login)
-      console.log(this.password)
-      alert('Nieprawidłowy login lub hasło!');
-    }
-  });
-}
+    this.authService.login(this.login, this.password).subscribe((isAuthenticated: boolean) => {
+      if (isAuthenticated) {
+        this.router.navigate(['/zalogowany']);
+      } else {
+        console.log(this.login)
+        console.log(this.password)
+        alert('Nieprawidłowy login lub hasło!');
+      }
+    });
+  }
 
   isExpanded = false;
   faChevronDown = faChevronDown;
@@ -42,6 +41,4 @@ export class LoginMainComponent  {
   toggle() {
     this.isExpanded = !this.isExpanded;
   }
-
-
 }

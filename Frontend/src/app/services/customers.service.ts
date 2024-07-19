@@ -1,94 +1,38 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { catchError, map, Observable, of, tap } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Customer } from '../models/customer.model';
-import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomersService {
-
   private apiUrl = 'http://localhost:8080/api/customers';
-  private isAuthenticated = false; // Store the authentication status
 
-  private currentUser: Customer | null = null;
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient, private router: Router) {
-    this.checkAuthenticationStatus(); // Check authentication status on service initialization
+  getCustomers(): Observable<Customer[]> {
+    return this.http.get<Customer[]>(this.apiUrl);
   }
 
-  setCustomer(customer: Customer) {
-    this.currentUser = customer;
-    localStorage.setItem('currentUser', JSON.stringify(customer)); // Store user data in localStorage
+  getCustomerById(id: number): Observable<Customer> {
+    return this.http.get<Customer>(`${this.apiUrl}/${id}`);
   }
 
-  getCustomer(): Customer | null {
-    return this.currentUser;
+  addCustomer(customer: Customer): Observable<Customer> {
+    return this.http.post<Customer>(this.apiUrl, customer);
   }
 
-  getCustomerName(): string {
-    return this.currentUser ? this.currentUser.name : '';
+  updateCustomer(customer: Customer): Observable<Customer> {
+    return this.http.put<Customer>(`${this.apiUrl}/${customer.id}`, customer);
   }
 
-  getCustomerId(): number | null {
-    return this.currentUser ? this.currentUser.id : null;
+  deleteCustomer(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
-  authenticateUser(login: string, password: string): Observable<boolean> {
-    return this.http.get<Customer[]>(`${this.apiUrl}`).pipe(
-      tap(customers => console.log('Customers data:', customers)),
-      map(customers => customers.some(customer => {
-        // Split the password into street and buildingNumber
-        const [inputStreet, inputBuildingNumber] = password.split(" ");
-        const customerMail = customer.mail;
-        const customerAddress = customer.street.toLowerCase() + customer.buildingNumber;
-
-        let loginAuth = customerMail === login;
-
-        if(!loginAuth) {
-          loginAuth = customer.phoneNumber === login;
-        }
-        const passwordAuth = customerAddress.toLowerCase() === password.toLowerCase();
-
-        const authenticated = loginAuth && passwordAuth;
-
-
-        if (authenticated) {
-          this.isAuthenticated = true;
-          localStorage.setItem('isAuthenticated', 'true'); // Store authentication state in localStorage
-          this.setCustomer(customer);
-        }
-        return authenticated;
-      })),
-      catchError(error => {
-        console.error('Authentication error:', error);
-        return of(false);
-      })
-    );
-  }
-
-  checkAuthenticationStatus(): boolean {
-    if (typeof window !== 'undefined') {
-      const isAuthenticated = localStorage.getItem('isAuthenticated');
-      this.isAuthenticated = isAuthenticated === 'true';
-      if (this.isAuthenticated) {
-        const storedUser = localStorage.getItem('currentUser');
-        this.currentUser = storedUser ? JSON.parse(storedUser) : null;
-      }
-      return this.isAuthenticated;
-    } else {
-      this.router.navigate(['/logowanie']);
-      console.log('localStorage is not available in this environment.');
-      return false;
-    }
-  }
-
-  logoutUser(): void {
-    this.isAuthenticated = false;
-    this.currentUser = null;
-    localStorage.removeItem('isAuthenticated');
-    localStorage.removeItem('currentUser'); // Clear user data from localStorage
-    this.router.navigate(['/logowanie']);
+  getLoggedInCustomer(jwt: string): Observable<Customer> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${jwt}`);
+    return this.http.get<Customer>(`${this.apiUrl}/me`, { headers });
   }
 }
