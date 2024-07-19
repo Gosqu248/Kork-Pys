@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {InvoiceModel} from "../models/invoice.model";
 
@@ -13,13 +13,11 @@ export class InvoiceService {
 
   constructor(private http: HttpClient) { }
 
-  getInvoicesByCustomerId(customerId: number): Observable<InvoiceModel[]> {
-    return this.http.get<InvoiceModel[]>(`${this.apiUrl}?customerId=${customerId}`);
+  getInvoicesByCustomerId(customerId: number, jwt: string): Observable<InvoiceModel[]> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${jwt}`);
+    return this.http.get<InvoiceModel[]>(`${this.apiUrl}?customerId=${customerId}`, { headers });
   }
 
-  getInvoices() {
-    return this.invoices;
-  }
 
 
 }

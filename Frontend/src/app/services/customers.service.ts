@@ -7,13 +7,10 @@ import { Customer } from '../models/customer.model';
   providedIn: 'root'
 })
 export class CustomersService {
-  private apiUrl = 'http://localhost:8080/api/customers';
+  private apiUrl = 'http://localhost:8080/api/customer';
 
   constructor(private http: HttpClient) {}
 
-  getCustomers(): Observable<Customer[]> {
-    return this.http.get<Customer[]>(this.apiUrl);
-  }
 
   getCustomerById(id: number): Observable<Customer> {
     return this.http.get<Customer>(`${this.apiUrl}/${id}`);
@@ -31,8 +28,8 @@ export class CustomersService {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
-  getLoggedInCustomer(jwt: string): Observable<Customer> {
+  getCustomer(jwt: string): Observable<Customer> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${jwt}`);
-    return this.http.get<Customer>(`${this.apiUrl}/me`, { headers });
+    return this.http.get<Customer>(`${this.apiUrl}`, { headers });
   }
 }

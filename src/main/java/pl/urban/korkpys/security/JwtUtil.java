@@ -60,12 +60,15 @@ public class JwtUtil {
                 .signWith(secretKey, SignatureAlgorithm.HS256).compact();
     }
 
+    public String getSubjectFromToken(String token) {
+        return extractClaim(token, Claims::getSubject);
+    }
+
     public Boolean validateToken(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 
-    // Metoda do rotacji kluczy
     public void rotateKey() {
         secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
     }

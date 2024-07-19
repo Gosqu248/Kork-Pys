@@ -1,5 +1,6 @@
 package pl.urban.korkpys.service;
 
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -60,4 +61,48 @@ public class InvoiceService {
 
         return filePath.toString();
     }
+
+
+    public List<Invoice> createInvoiceList() {
+        List<Invoice> invoiceList = new ArrayList<>();
+
+        Object[][] invoiceData = {
+                {"2024", "Styczeń", "faktura.jpg", 45},
+                {"2024", "Luty", "faktura.jpg", 45},
+                {"2024", "Marzec", "faktura.jpg", 45},
+                {"2024", "Kwiecień", "faktura.jpg", 45},
+                {"2024", "Maj", "faktura.jpg", 45},
+                {"2024", "Maj", "faktura.jpg", 48},
+
+        };
+
+        for(Object[] data : invoiceData) {
+            Invoice invoice = new Invoice();
+            invoice.setInvoiceYear((String) data[0]);
+            invoice.setInvoiceMonth((String) data[1]);
+            invoice.setImage("/img/" + data[2]);
+            invoice.setCustomer(getCustomerById(Long.valueOf((Integer) data[3])));
+            invoiceList.add(invoice);
+        }
+
+        return invoiceList;
+    }
+
+    @PostConstruct
+    public void addInvoices() {
+        List<Invoice> existingInvoices = findAllInvoices();
+        List<Invoice> newInvoices = createInvoiceList();
+
+        newInvoices.forEach(newInvoice -> {
+            Invoice existingInvoice = existingInvoices.stream()
+                    .filter(e -> e.getInvoiceMonth().equals(newInvoice.getInvoiceMonth()))
+                    .findFirst()
+                    .orElse(null);
+
+            if (existingInvoice == null) {
+                addInvoice(newInvoice);
+            }
+        });
+    }
+
 }

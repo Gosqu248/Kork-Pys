@@ -4,6 +4,8 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import pl.urban.korkpys.model.Customer;
 import pl.urban.korkpys.repository.CustomerRepository;
 
@@ -23,8 +25,8 @@ public class CustomerService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
-    public List<Customer> getCustomers() {
-        return customerRepository.findAll();
+    public Customer getCustomerBySubject(String subject) {
+        return customerRepository.findByMailOrPhoneNumber(subject, subject).orElse(null);
     }
 
     public Customer getCustomerById(Long id) {
@@ -39,29 +41,6 @@ public class CustomerService {
         }
     }
 
-//    @Transactional
-//    public void removeDuplicateCustomers() {
-//        // Retrieve all customers from the database
-//        List<Customer> allCustomers = customerRepository.findAll();
-//
-//        // Group customers by their code to identify duplicates
-//        Map<String, List<Customer>> customersGroupedByCode = allCustomers.stream()
-//                .collect(Collectors.groupingBy(Customer::getCustomerCode));
-//
-//        // Iterate over each group of customers with the same code
-//        for (Map.Entry<String, List<Customer>> groupEntry : customersGroupedByCode.entrySet()) {
-//            List<Customer> customersInGroup = groupEntry.getValue();
-//
-//            // Check if there are duplicates (more than one customer with the same code)
-//            if (customersInGroup.size() > 1) {
-//                // Keep the first customer as the primary one and consider the rest as duplicates
-//                Customer primaryCustomer = customersInGroup.get(0); // Using get(0) instead of getFirst() for clarity
-//                List<Customer> duplicates = customersInGroup.subList(1, customersInGroup.size());
-//
-//                customerRepository.deleteAll(duplicates);
-//            }
-//        }
-//    }
 
     public void saveCustomer(Customer customer) {
         customer.setPassword(customer.getStreet(), customer.getBuildingNumber(), bCryptPasswordEncoder);

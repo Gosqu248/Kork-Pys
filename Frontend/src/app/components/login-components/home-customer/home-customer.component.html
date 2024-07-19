@@ -3,7 +3,7 @@
     <app-customer-welcome [customerName]="loggedInCustomer?.name"></app-customer-welcome>
     <div class="main">
       <app-customer-data [customer]="loggedInCustomer"></app-customer-data>
-      <app-customer-main [customerId]="loggedInCustomer?.id"></app-customer-main>
+      <app-customer-main [invoices]="invoices"></app-customer-main>
     </div>
   </div>
 </div>

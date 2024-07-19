@@ -5,6 +5,7 @@ import { InvoiceComponentComponent } from "../invoice-component/invoice-componen
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import {Customer} from "../../../models/customer.model";
+import {AuthService} from "../../../services/auth.service";
 
 @Component({
   selector: 'app-customer-main',
@@ -18,19 +19,6 @@ import {Customer} from "../../../models/customer.model";
 })
 export class CustomerMainComponent {
 
-  @Input() customerId: number | undefined = undefined;
+  @Input() invoices: any;
 
-  public invoices: any;
-
-  // ngOnInit() {
-  //   const customerId = +this.route.snapshot.params['customerId']; // Convert to number with +
-  //   this.customerService.getCustomerById(customerId).subscribe(customer => {
-  //     this.customer_id = customer.id;
-  //   });
-  //   if (this.customer_id != null) {
-  //     this.invoiceService.getInvoicesByCustomerId(this.customer_id).subscribe(data => {
-  //       this.invoices = data;
-  //     });
-  //   }
-  // }
 }

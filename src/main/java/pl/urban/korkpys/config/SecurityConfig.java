@@ -25,7 +25,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -40,10 +40,9 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/images").permitAll()
-                        .requestMatchers("/api/auth/**", "/api/public/**").permitAll()
-                        //.requestMatchers("/api/customers").permitAll()
-                        .anyRequest().authenticated()
+                        .requestMatchers("/api/customer").authenticated()
+                        .requestMatchers("/api/invoices").authenticated()
+                        .anyRequest().permitAll()
                 )
                 .exceptionHandling(exceptions -> exceptions
                         .authenticationEntryPoint((request, response, authException) -> {
