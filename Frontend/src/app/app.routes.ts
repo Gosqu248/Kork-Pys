@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import {HomeComponent} from "./components/home/home.component";
 import {authGuard} from "./services/auth.guard";
+import path from "node:path";
 
 export const routes: Routes = [
   {
@@ -36,6 +37,15 @@ export const routes: Routes = [
     path: 'zalogowany',
     loadComponent: () => import('./components/login-components/home-customer/home-customer.component').then(m => m.HomeCustomerComponent),
     canActivate: [authGuard]
+  },
 
+  {
+    path: 'resetowanie-hasła',
+    loadComponent: () => import('./components/login-components/home-reset-password/home-reset-password.component').then(m => m.HomeResetPasswordComponent)
+  },
+
+  {
+    path: 'reset-password',
+    loadComponent: () => import('./components/login-components/reset-password/reset-password.component').then(m => m.ResetPasswordComponent)
   }
 ];

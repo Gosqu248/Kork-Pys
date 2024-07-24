@@ -20,7 +20,7 @@ public class OAuth2Config {
     @Value("${comarch.client-secret}")
     private String clientSecret;
     private volatile String accessToken;
-    private volatile long expiryTime = 0;
+    private volatile long expiryTime = 86400000;
     private final ReentrantLock lock = new ReentrantLock();
 
     @Bean

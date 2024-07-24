@@ -33,4 +33,14 @@ export class AuthService {
   getJwtToken(): string | null {
     return sessionStorage.getItem('jwt');
   }
+
+  resetPassword(email: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/reset-password`, { email });
+  }
+
+  confirmResetPassword(token: string | null, newPassword: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/reset-password/confirm`, { token, newPassword });
+  }
+
+
 }

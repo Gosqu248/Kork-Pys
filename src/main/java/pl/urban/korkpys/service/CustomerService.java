@@ -41,6 +41,16 @@ public class CustomerService {
         }
     }
 
+    public boolean updatePasswordByMail(String mail, String newPassword) {
+        Customer customer = customerRepository.findByMail(mail).orElse(null);
+        if (customer != null) {
+            customer.setPassword(newPassword, bCryptPasswordEncoder);
+            customerRepository.save(customer);
+            return true;
+        }
+        return false;
+    }
+
 
     public void saveCustomer(Customer customer) {
         customer.setPassword(customer.getStreet(), customer.getBuildingNumber(), bCryptPasswordEncoder);

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from "../../../services/auth.service"; // Import AuthService
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { FaIconComponent } from "@fortawesome/angular-fontawesome";
-import { Router } from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import { FormsModule } from "@angular/forms";
 
 @Component({
@@ -10,7 +10,8 @@ import { FormsModule } from "@angular/forms";
   standalone: true,
   imports: [
     FaIconComponent,
-    FormsModule
+    FormsModule,
+    RouterLink
   ],
   templateUrl: './login-main.component.html',
   styleUrl: './login-main.component.css'
