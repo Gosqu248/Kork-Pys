@@ -70,15 +70,18 @@ public class AuthController {
         UserDetails user = customerDetailsService.loadUserByUsername(request.getEmail());
 
         if(user == null) {
-            return ResponseEntity.badRequest().body(Map.of("message", "User not found"));
+            return ResponseEntity.badRequest().body(Map.of("message", "Użytkownik nie znaleziony"));
         }
 
         String token = jwtUtil.generateToken(user);
-        String resetUrl = "http://localhost:4200/reset-password?token=" + token;
+        // Update the resetUrl to include HTML anchor tag for clickable link
+        String resetUrl = "<a href='http://localhost:4200/reset-password?token=" + token + "'>http://localhost:4200/reset-password?token=" + token + "</a>";
 
-        emailService.sendPasswordResetMail(user.getUsername(), "Password reset", resetUrl);
+        // Update the email content to indicate it's a password reset for Kork-Pyś and include the clickable link
+        String emailContent = "Resetowanie hasła do strony Kork-Pyś. <br> <br>  Kliknij w poniższy link, aby zresetować hasło: <br><br>" + resetUrl;
+        emailService.sendPasswordResetMail(user.getUsername(), "Resetowanie hasła", emailContent);
 
-        return ResponseEntity.ok(Map.of("message", "Password reset link sent to your email"));
+        return ResponseEntity.ok(Map.of("message", "Link do resetowania hasła został wysłany na Twój email."));
     }
 
     @PostMapping("/reset-password/confirm")
