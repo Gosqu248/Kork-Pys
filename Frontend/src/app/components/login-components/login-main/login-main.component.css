@@ -223,10 +223,35 @@
   }
   .login-text {
     flex-direction: column;
-    top: -35vh;
+    top: -42vh;
+
   }
   .expand {
-    transform: translateY(32vh);
+    transform: translateY(42vh);
   }
-
 }
+
+@media (max-width: 365px) {
+  .wrapper {
+    flex-direction: column-reverse;
+  }
+  .login-text {
+    flex-direction: column;
+    top: -48vh;
+  }
+  .expand {
+    transform: translateY(44vh);
+  }
+}
+
+@media (max-height: 668px) {
+  .login-text {
+    flex-direction: column;
+    top: -58vh;
+  }
+  .expand {
+    transform: translateY(38vh);
+  }
+}
+
+

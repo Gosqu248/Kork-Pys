@@ -1,9 +1,21 @@
 #welcome-container {
+  position: relative; /* Needed for absolute positioning of the child */
   width: 100%;
   height: auto;
-  align-items: center;
+  display: flex;
+  justify-content: center; /* Center the content */
+  flex-direction: row;
+}
+
+#text-container {
+  width: 80%;
+
+}
+
+#icon-container {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 h1 {
@@ -11,4 +23,50 @@ h1 {
   font-size: 45px;
   text-align: center;
   padding: 0;
+}
+
+#button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+#logout-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  height: 70%;
+  background: limegreen;
+  border: none;
+  color: whitesmoke;
+;
+
+}
+
+
+#logout-button i {
+  font-size: 45px; /* Adjust icon size as needed */
+  padding-right: 10px;
+}
+
+#logout-button p {
+  font-size: 20px; /* Adjust text size as needed */
+  font-weight: bolder;
+}
+
+@media (max-width: 570px){
+  #welcome-container {
+    flex-direction: column;
+  }
+  #text-container {
+    width: 100%;
+  }
+  h1 {
+
+    font-size: 40px;
+
+  }
 }

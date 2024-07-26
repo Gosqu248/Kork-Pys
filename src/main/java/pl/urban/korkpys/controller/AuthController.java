@@ -11,6 +11,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import pl.urban.korkpys.request.*;
 import pl.urban.korkpys.security.JwtUtil;
 import pl.urban.korkpys.service.CustomerDetailsService;
 import pl.urban.korkpys.service.CustomerService;

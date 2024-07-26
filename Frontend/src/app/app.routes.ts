@@ -47,5 +47,10 @@ export const routes: Routes = [
   {
     path: 'reset-password',
     loadComponent: () => import('./components/login-components/reset-password/reset-password.component').then(m => m.ResetPasswordComponent)
+  },
+
+  {
+    path: 'zmiana-hasła',
+    loadComponent: () => import('./components/login-components/change-password/change-password.component').then(m => m.ChangePasswordComponent),
   }
 ];

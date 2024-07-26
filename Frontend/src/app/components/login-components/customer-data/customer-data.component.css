@@ -48,6 +48,41 @@
   max-width: 60%; /* Optional: You might adjust this based on your layout needs */
 }
 
+.bad-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  font-size: 20px;
+}
+
+#button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+}
+
+#logout-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  height: 70%;
+  background: limegreen;
+  border: none;
+  padding: 20px;
+  font-size: 25px;
+  font-weight: bolder;
+  color: whitesmoke;
+}
+
+
+
+
 @media (max-width: 1025px) {
   .data-container {
     width: auto;

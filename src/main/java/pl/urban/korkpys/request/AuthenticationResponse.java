@@ -1,4 +1,4 @@
-package pl.urban.korkpys.controller;
+package pl.urban.korkpys.request;
 
 import lombok.Getter;
 

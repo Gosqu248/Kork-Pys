@@ -25,12 +25,11 @@ public class Customer {
     private String customerCode;
     private String password;
 
-    public void setPassword(String street, String buildingNumber, BCryptPasswordEncoder encoder) {
-        String rawPassword = street + buildingNumber;
-        this.password = encoder.encode(rawPassword);
-    }
 
     public void setPassword(String newPassword, BCryptPasswordEncoder encoder) {
+        if (newPassword == null) {
+            throw new IllegalArgumentException("Password cannot be null");
+        }
         this.password = encoder.encode(newPassword);
     }
 }

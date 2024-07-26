@@ -51,9 +51,21 @@ public class CustomerService {
         return false;
     }
 
+    public boolean changeUserPassword(String email, String currentPassword, String newPassword) {
+        if (currentPassword == null || newPassword == null) {
+            throw new IllegalArgumentException("Passwords cannot be null");
+        }
+        Customer customer = customerRepository.findCustomerByMail(email).orElse(null);
+        if (customer != null && bCryptPasswordEncoder.matches(currentPassword, customer.getPassword())) {
+            customer.setPassword(newPassword, bCryptPasswordEncoder);
+            customerRepository.save(customer);
+            return true;
+        }
+        return false;
+    }
+
 
     public void saveCustomer(Customer customer) {
-        customer.setPassword(customer.getStreet(), customer.getBuildingNumber(), bCryptPasswordEncoder);
         customerRepository.save(customer);
     }
 }

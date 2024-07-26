@@ -42,4 +42,5 @@ export class LoginMainComponent {
   toggle() {
     this.isExpanded = !this.isExpanded;
   }
+
 }

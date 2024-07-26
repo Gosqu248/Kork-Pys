@@ -1,3 +1,13 @@
-<div id="welcome-container">
-    <h1>Witaj, {{customerName}}!</h1>
-</div>
+<form (ngSubmit)="logout()">
+  <div id="welcome-container">
+    <div id="text-container">
+      <h1>Witaj, {{customerName}}!</h1>
+    </div>
+    <div id="button-container">
+      <button type="submit" id="logout-button">
+        <i class="fas fa-sign-out-alt" title="Wyloguj"></i>
+        <p> Wyloguj się</p>
+      </button>
+    </div>
+  </div>
+</form>
