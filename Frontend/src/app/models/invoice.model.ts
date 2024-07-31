@@ -1,7 +1,7 @@
 export interface InvoiceModel {
   id: number;
-  image: string;
+  image: String;
   month: number | string;
   year: number;
-  customer_id: number;
+  customer_id: number| null;
 }

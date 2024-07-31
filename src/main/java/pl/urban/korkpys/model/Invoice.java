@@ -1,4 +1,3 @@
-// Invoice.java
 package pl.urban.korkpys.model;
 
 import jakarta.persistence.*;
@@ -15,12 +14,14 @@ public class Invoice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     private String image;
+
     private String invoiceMonth;
+
     private String invoiceYear;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
-
 }

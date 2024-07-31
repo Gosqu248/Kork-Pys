@@ -38,7 +38,7 @@ public class BackgroundJobService {
         this.customerService = customerService;
     }
 
-    @Scheduled(fixedRate = 600000) // Every 60 min
+    @Scheduled(fixedRate = 6000000) // Every 60 min
     public void fetchCustomersInBackground() {
         String accessToken = tokenService.getAccessToken();
         String url = "https://app.erpxt.pl/api2/public/v1.2/customers";

@@ -1,27 +1,21 @@
 package pl.urban.korkpys.service;
 
-import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 import pl.urban.korkpys.model.Customer;
 import pl.urban.korkpys.model.Invoice;
 import pl.urban.korkpys.repository.InvoiceRepository;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Service
 public class InvoiceService {
 
     private final InvoiceRepository invoiceRepository;
     private final CustomerService customerService;
-    private final String uploadDir = "uploaded-images";
+    private static final Logger logger = Logger.getLogger(InvoiceService.class.getName());
 
     @Autowired
     public InvoiceService(InvoiceRepository invoiceRepository, CustomerService customerService) {
@@ -33,76 +27,44 @@ public class InvoiceService {
         return customerService.getCustomerById(id);
     }
 
+    public Invoice getInvoiceById(Long id) {
+        return invoiceRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Invoice not found with id: " + id));
+    }
+
     public List<Invoice> findAllInvoices() {
-        return invoiceRepository.findAll();
+        try {
+            return invoiceRepository.findAll();
+        } catch (Exception e) {
+            logger.severe("Error fetching all invoices: " + e.getMessage());
+            throw e;
+        }
+    }
+
+    public List<Invoice> findInvoicesByCustomerId(Long customerId) {
+        try {
+            return invoiceRepository.findInvoicesByCustomerId(customerId);
+        } catch (Exception e) {
+            logger.severe("Error fetching invoices for customerId: " + customerId + ", " + e.getMessage());
+            throw e;
+        }
     }
 
     public void addInvoice(Invoice invoice) {
-        invoiceRepository.save(invoice);
+        try {
+            invoiceRepository.save(invoice);
+        } catch (Exception e) {
+            logger.severe("Error saving invoice: " + e.getMessage());
+            throw e;
+        }
     }
 
     public void deleteInvoice(Long id) {
-        invoiceRepository.deleteById(id);
-    }
-
-    public void updateInvoice(Long id, String image, String invoiceMonth, String invoiceYear) {
-        invoiceRepository.updateInvoice(id, image, invoiceMonth, invoiceYear);
-    }
-
-    public String saveImage(MultipartFile file) throws IOException {
-        Path uploadPath = Paths.get(uploadDir);
-        if (!Files.exists(uploadPath)) {
-            Files.createDirectories(uploadPath);
+        try {
+            invoiceRepository.deleteById(id);
+        } catch (Exception e) {
+            logger.severe("Error deleting invoice with id: " + id + ", " + e.getMessage());
+            throw e;
         }
-
-        String fileName = file.getOriginalFilename();
-        Path filePath = uploadPath.resolve(fileName);
-        Files.write(filePath, file.getBytes());
-
-        return filePath.toString();
     }
-
-
-    public List<Invoice> createInvoiceList() {
-        List<Invoice> invoiceList = new ArrayList<>();
-
-        Object[][] invoiceData = {
-                {"2024", "Styczeń", "faktura.jpg", 45},
-                {"2024", "Luty", "faktura.jpg", 45},
-                {"2024", "Marzec", "faktura.jpg", 45},
-                {"2024", "Kwiecień", "faktura.jpg", 45},
-                {"2024", "Maj", "faktura.jpg", 45},
-                {"2024", "Maj", "faktura.jpg", 48},
-
-        };
-
-        for(Object[] data : invoiceData) {
-            Invoice invoice = new Invoice();
-            invoice.setInvoiceYear((String) data[0]);
-            invoice.setInvoiceMonth((String) data[1]);
-            invoice.setImage("/img/" + data[2]);
-            invoice.setCustomer(getCustomerById(Long.valueOf((Integer) data[3])));
-            invoiceList.add(invoice);
-        }
-
-        return invoiceList;
-    }
-
-    @PostConstruct
-    public void addInvoices() {
-        List<Invoice> existingInvoices = findAllInvoices();
-        List<Invoice> newInvoices = createInvoiceList();
-
-        newInvoices.forEach(newInvoice -> {
-            Invoice existingInvoice = existingInvoices.stream()
-                    .filter(e -> e.getInvoiceMonth().equals(newInvoice.getInvoiceMonth()))
-                    .findFirst()
-                    .orElse(null);
-
-            if (existingInvoice == null) {
-                addInvoice(newInvoice);
-            }
-        });
-    }
-
 }

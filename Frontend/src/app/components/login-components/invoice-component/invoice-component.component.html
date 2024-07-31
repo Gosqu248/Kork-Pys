@@ -5,6 +5,6 @@
   </div>
   <div class="main">
     <button id="dynamicButton" [ngStyle]="{'display': isDynamicElementsVisible ? 'block' : 'none'}" (click)="downloadImage($event)">Pobierz fakturę</button>
-    <img id="dynamicImg" [ngStyle]="{'display': isDynamicElementsVisible ? 'block' : 'none'}" src="{{image}}" alt="Invoice Image">
+    <img id="dynamicImg" [ngStyle]="{'display': isDynamicElementsVisible ? 'block' : 'none'}" [src]="image" alt="Invoice Image">
   </div>
 </div>

@@ -36,6 +36,7 @@ export class HomeCustomerComponent implements OnInit{
         if (isAuthenticated) {
           const jwt = this.authService.getJwtToken();
           if (jwt) {
+            console.log('JWT:', jwt); // Log JWT token (sensitive information
             return this.customersService.getCustomer(jwt).pipe(
               catchError(error => {
                 console.error('Error fetching customer data', error);

@@ -85,6 +85,11 @@
 			<version>2.0.3</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.github.eliux</groupId>
+			<artifactId>megacmd4j</artifactId>
+			<version>1.6.2</version>
+		</dependency>
 
 
 	</dependencies>
