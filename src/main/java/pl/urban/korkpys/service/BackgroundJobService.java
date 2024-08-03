@@ -1,7 +1,9 @@
 package pl.urban.korkpys.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +12,14 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import pl.urban.korkpys.dto.CustomerDto;
+import pl.urban.korkpys.dto.InvoiceDto;
 import pl.urban.korkpys.formatter.DataFormatter;
 import pl.urban.korkpys.mapper.CustomerMapper;
 import pl.urban.korkpys.model.Customer;
+import pl.urban.korkpys.model.Invoice;
 import pl.urban.korkpys.repository.CustomerRepository;
+import pl.urban.korkpys.repository.InvoiceRepository;
+import pl.urban.korkpys.mapper.InvoiceMapper;
 
 import java.io.IOException;
 import java.util.List;
@@ -26,16 +32,24 @@ public class BackgroundJobService {
     @Autowired
     private CustomerRepository customerRepository;
 
+    @Autowired
+    private InvoiceRepository invoiceRepository;
+
+
     private final TokenService tokenService;
     private final CustomerService customerService;
+
+    private final InvoiceService invoiceService;
+
 
     private static final Logger log = LoggerFactory.getLogger(BackgroundJobService.class);
 
     @Autowired
-    public BackgroundJobService(CustomerRepository customerRepository, TokenService tokenService, CustomerService customerService) {
+    public BackgroundJobService(CustomerRepository customerRepository, TokenService tokenService, CustomerService customerService, InvoiceService invoiceService) {
         this.customerRepository = customerRepository;
         this.tokenService = tokenService;
         this.customerService = customerService;
+        this.invoiceService = invoiceService;
     }
 
     @Scheduled(fixedRate = 6000000) // Every 60 min
@@ -52,7 +66,8 @@ public class BackgroundJobService {
             String customersJson = response.getBody();
             try {
                 ObjectMapper objectMapper = new ObjectMapper();
-                List<CustomerDto> customerDtos = objectMapper.readValue(customersJson, new TypeReference<List<CustomerDto>>() {});
+                List<CustomerDto> customerDtos = objectMapper.readValue(customersJson, new TypeReference<List<CustomerDto>>() {
+                });
                 List<Customer> customersToUpdateOrSave = customerDtos.stream()
                         .map(CustomerMapper::toEntity)
                         .map(customer -> {
@@ -119,6 +134,70 @@ public class BackgroundJobService {
             }
         } else {
             log.error("Failed to fetch customers: " + response.getStatusCode());
+        }
+    }
+
+    @Scheduled(fixedRate = 6000000) // Every 60 min
+    public void fetchInvoicesInBackground() {
+        String accessToken = tokenService.getAccessToken();
+        String url = "https://app.erpxt.pl/api2/public/v1.4/invoices";
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", "Bearer " + accessToken);
+        HttpEntity<String> entity = new HttpEntity<>(headers);
+
+        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
+        if (response.getStatusCode().is2xxSuccessful()) {
+            String invoicesJson = response.getBody();
+            try {
+                ObjectMapper objectMapper = new ObjectMapper();
+                objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+                objectMapper.registerModule(new JavaTimeModule()); // Add this line to handle LocalDateTime
+
+                List<InvoiceDto> invoiceDtos = objectMapper.readValue(invoicesJson, new TypeReference<List<InvoiceDto>>() {
+                });
+                List<Invoice> invoicesToUpdateOrSave = invoiceDtos.stream()
+                        .map(InvoiceMapper::toEntity)
+                        .map(invoice -> {
+                            Invoice existingInvoice = invoiceRepository.findById(invoice.getId()).orElse(null);
+                            if (existingInvoice != null) {
+                                boolean needsUpdate = false;
+
+                                if (!Objects.equals(existingInvoice.getPurchasingParty().getName(), invoice.getPurchasingParty().getName())) {
+                                    existingInvoice.getPurchasingParty().setName(invoice.getPurchasingParty().getName());
+                                    needsUpdate = true;
+                                }
+
+                                if (!Objects.equals(existingInvoice.getPurchasingParty().getStreet(), invoice.getPurchasingParty().getStreet())) {
+                                    existingInvoice.getPurchasingParty().setStreet(invoice.getPurchasingParty().getStreet());
+                                    needsUpdate = true;
+                                }
+
+                                if (!Objects.equals(existingInvoice.getGrossTotal(), invoice.getGrossTotal())) {
+                                    existingInvoice.setGrossTotal(invoice.getGrossTotal());
+                                    needsUpdate = true;
+                                }
+
+                                if (needsUpdate) {
+                                    log.info("Updating invoice with ID: " + invoice.getId());
+                                    invoiceService.saveInvoice(existingInvoice);
+                                    return existingInvoice;
+                                }
+                                return existingInvoice;
+                            } else {
+                                invoiceService.saveInvoice(invoice);
+                                return invoice;
+                            }
+                        })
+                        .collect(Collectors.toList());
+
+                invoiceRepository.saveAll(invoicesToUpdateOrSave);
+                log.info("Successfully fetched and updated or saved unique invoices in background.");
+            } catch (IOException e) {
+                log.error("Error parsing invoice data: " + e.getMessage());
+            }
+        } else {
+            log.error("Failed to fetch invoices: " + response.getStatusCode());
         }
     }
 }

@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
-@JsonDeserialize(using = CustomerDtoDeserializer.class) // Dodajemy deserializer tylko raz
+@JsonDeserialize(using = CustomerDtoDeserializer.class)
 public class CustomerDto {
 
     private String name;
@@ -21,6 +21,5 @@ public class CustomerDto {
     private String buildingNumber;
     private String city;
     private String postalCode;
-
 
 }

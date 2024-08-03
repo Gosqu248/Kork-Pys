@@ -1,70 +1,29 @@
+// src/main/java/pl/urban/korkpys/service/InvoiceService.java
 package pl.urban.korkpys.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.urban.korkpys.model.Customer;
+import org.springframework.transaction.annotation.Transactional;
 import pl.urban.korkpys.model.Invoice;
+import pl.urban.korkpys.model.Party;
 import pl.urban.korkpys.repository.InvoiceRepository;
-
-import java.util.Base64;
-import java.util.List;
-import java.util.logging.Logger;
+import pl.urban.korkpys.repository.PartyRepository;
 
 @Service
 public class InvoiceService {
 
-    private final InvoiceRepository invoiceRepository;
-    private final CustomerService customerService;
-    private static final Logger logger = Logger.getLogger(InvoiceService.class.getName());
+    @Autowired
+    private InvoiceRepository invoiceRepository;
 
     @Autowired
-    public InvoiceService(InvoiceRepository invoiceRepository, CustomerService customerService) {
-        this.invoiceRepository = invoiceRepository;
-        this.customerService = customerService;
-    }
+    private PartyRepository partyRepository;
 
-    public Customer getCustomerById(Long id) {
-        return customerService.getCustomerById(id);
-    }
-
-    public Invoice getInvoiceById(Long id) {
-        return invoiceRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Invoice not found with id: " + id));
-    }
-
-    public List<Invoice> findAllInvoices() {
-        try {
-            return invoiceRepository.findAll();
-        } catch (Exception e) {
-            logger.severe("Error fetching all invoices: " + e.getMessage());
-            throw e;
+    @Transactional
+    public void saveInvoice(Invoice invoice) {
+        Party purchasingParty = invoice.getPurchasingParty();
+        if (purchasingParty != null && purchasingParty.getId() == null) {
+            partyRepository.save(purchasingParty);
         }
-    }
-
-    public List<Invoice> findInvoicesByCustomerId(Long customerId) {
-        try {
-            return invoiceRepository.findInvoicesByCustomerId(customerId);
-        } catch (Exception e) {
-            logger.severe("Error fetching invoices for customerId: " + customerId + ", " + e.getMessage());
-            throw e;
-        }
-    }
-
-    public void addInvoice(Invoice invoice) {
-        try {
-            invoiceRepository.save(invoice);
-        } catch (Exception e) {
-            logger.severe("Error saving invoice: " + e.getMessage());
-            throw e;
-        }
-    }
-
-    public void deleteInvoice(Long id) {
-        try {
-            invoiceRepository.deleteById(id);
-        } catch (Exception e) {
-            logger.severe("Error deleting invoice with id: " + id + ", " + e.getMessage());
-            throw e;
-        }
+        invoiceRepository.save(invoice);
     }
 }
