@@ -4,8 +4,6 @@ import pl.urban.korkpys.dto.InvoiceDto;
 import pl.urban.korkpys.model.Invoice;
 import pl.urban.korkpys.model.Party;
 
-import java.util.Objects;
-
 public class InvoiceMapper {
 
     public static InvoiceDto toDto(Invoice invoice) {
@@ -75,7 +73,6 @@ public class InvoiceMapper {
         invoice.setInvoiceType(dto.getInvoiceType());
         invoice.setItems(dto.getItems().stream()
                 .map(InvoiceMapper::toEntity)
-                .filter(Objects::nonNull)
                 .toList());
         invoice.setDescription(dto.getDescription());
         invoice.setIssueDate(dto.getIssueDate());
@@ -138,11 +135,11 @@ public class InvoiceMapper {
     }
 
     private static Invoice.InvoiceItem toEntity(InvoiceDto.InvoiceItemDto dto) {
-        if (dto == null || dto.getProductId() == null) return null;
+        if (dto == null ) return null;
 
         Invoice.InvoiceItem item = new Invoice.InvoiceItem();
         item.setId(dto.getId());
-        item.setProductId(dto.getProductId());
+        item.setProductId(dto.getProductId() != null ? dto.getProductId() : 0L); // Handle null ProductId
         item.setQuantity(dto.getQuantity());
         item.setProductCurrencyPrice(dto.getProductCurrencyPrice());
         item.setProductPrice(dto.getProductPrice());

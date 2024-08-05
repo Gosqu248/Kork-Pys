@@ -196,6 +196,7 @@ public class BackgroundJobService {
             } catch (IOException e) {
                 log.error("Error parsing invoice data: " + e.getMessage());
             }
+
         } else {
             log.error("Failed to fetch invoices: " + response.getStatusCode());
         }

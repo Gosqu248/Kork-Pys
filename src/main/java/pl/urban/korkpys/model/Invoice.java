@@ -70,6 +70,7 @@ public class Invoice {
         private double productCurrencyPrice;
         private double productPrice;
         private String productName;
+        @Column(name="product_description", length = 500)
         private String productDescription;
         private String unitOfMeasurement;
         private int vatRateId;
