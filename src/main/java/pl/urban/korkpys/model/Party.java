@@ -1,17 +1,13 @@
 package pl.urban.korkpys.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "parties")
+@Table(name = "invoice_parties")
 public class Party {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

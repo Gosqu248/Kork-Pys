@@ -13,9 +13,9 @@ export class InvoiceService {
 
   constructor(private http: HttpClient) { }
 
-  getInvoicesByCustomerId(customerId: number, jwt: string): Observable<InvoiceModel[]> {
+  getInvoicesByCustomerId(street: string, buildingNumber: string, jwt: string): Observable<InvoiceModel[]> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${jwt}`);
-    return this.http.get<InvoiceModel[]>(`${this.apiUrl}?customerId=${customerId}`, { headers });
+    return this.http.get<InvoiceModel[]>(`${this.apiUrl}?street=${street}&buildingNumber=${buildingNumber}`, { headers });
   }
 
 

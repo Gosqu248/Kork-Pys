@@ -22,7 +22,7 @@ import {InvoiceService} from "../../../services/invoice.service";
 })
 export class HomeCustomerComponent implements OnInit{
   loggedInCustomer: Customer | undefined = undefined;
-  invoices: any;
+  invoices: any[] = []; // Initialize as an empty array
 
   constructor(private authService: AuthService, private customersService: CustomersService, private invoiceService: InvoiceService) {}
 
@@ -36,7 +36,7 @@ export class HomeCustomerComponent implements OnInit{
         if (isAuthenticated) {
           const jwt = this.authService.getJwtToken();
           if (jwt) {
-            console.log('JWT:', jwt); // Log JWT token (sensitive information
+            console.log('JWT:', jwt); // Log JWT token (sensitive information)
             return this.customersService.getCustomer(jwt).pipe(
               catchError(error => {
                 console.error('Error fetching customer data', error);
@@ -44,9 +44,9 @@ export class HomeCustomerComponent implements OnInit{
               }),
               switchMap(customer => {
                 this.loggedInCustomer = customer;
-                if (customer && customer.id) {
-                  console.log(`Customer ID: ${customer.id}`); // Log customer ID
-                  this.fetchInvoices(customer.id, jwt);
+                if (customer && customer.street && customer.buildingNumber) {
+                  console.log(`Customer ID: ${customer.street} ${customer.buildingNumber}`); // Log customer ID
+                  this.fetchInvoices(customer.street, customer.buildingNumber, jwt);
                 }
                 return of(undefined);
               })
@@ -58,16 +58,54 @@ export class HomeCustomerComponent implements OnInit{
     ).subscribe();
   }
 
-  fetchInvoices(customerId: number, jwt: string): void {
-    this.invoiceService.getInvoicesByCustomerId(customerId, jwt).pipe(
-      catchError(error => {
-        console.error('Error fetching invoices', error);
-        return of([]);
-      })
-    ).subscribe(invoices => {
-      this.invoices = invoices;
-      console.log('Fetched invoices:', invoices); // Log fetched invoices
-    });
-  }
+ fetchInvoices(street: string, buildingNumber: string, jwt: string): void {
+  this.invoiceService.getInvoicesByCustomerId(street, buildingNumber, jwt).pipe(
+    catchError(error => {
+      console.error('Error fetching invoices', error);
+      return of([]);
+    })
+  ).subscribe(invoices => {
+    this.invoices = invoices.map((invoice: any) => {
+      if (invoice.Number) {
+        const numberParts = invoice.Number.split('/');
+        const invoiceYear = `20${numberParts[1]}`;
+        const invoiceMonthNumber = parseInt(numberParts[2], 10);
+        const invoiceMonth = this.getMonthName(invoiceMonthNumber);
+        console.log(`Invoice Number: ${invoice.number}, Year: ${invoiceYear}, Month: ${invoiceMonth}`);
+        return {
+          ...invoice,
+          invoiceYear,
+          invoiceMonth
+        };
+      } else {
+        console.error('Invoice number is undefined');
+        return {
+          ...invoice,
+          invoiceYear: 'Unknown',
+          invoiceMonth: 'Unknown'
+        };
+      }
+    }).reverse();
+    console.log('Fetched invoices:', this.invoices);
+  });
+}
 
+  getMonthName(monthNumber: number): string {
+    const months = [
+      'Styczeń',
+      'Luty',
+      'Marzec',
+      'Kwiecień',
+      'Maj',
+      'Czerwiec',
+      'Lipiec',
+      'Sierpień',
+      'Wrzesień',
+      'Październik',
+      'Listopad',
+      'Grudzień'
+    ];
+
+    return months[monthNumber - 1];
+  }
 }

@@ -22,15 +22,10 @@ public class InvoiceController {
         this.invoiceService = invoiceService;
     }
 
-    @GetMapping("/user")
+    @GetMapping()
     public List<InvoiceDto> getAllUserInvoices(
             @RequestParam String street, @RequestParam String buildingNumber) {
         return invoiceService.getAllUserInvoices(street, buildingNumber);
-    }
-
-    @GetMapping()
-    public List<InvoiceDto> getAllInvoices() {
-        return invoiceService.getAllInvoices();
     }
 
 

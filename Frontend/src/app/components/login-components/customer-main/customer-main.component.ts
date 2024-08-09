@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import { InvoiceComponentComponent } from "../invoice-component/invoice-component.component";
 import { CommonModule } from '@angular/common';
 
@@ -13,8 +13,10 @@ import { CommonModule } from '@angular/common';
   templateUrl: './customer-main.component.html',
   styleUrl: './customer-main.component.css'
 })
-export class CustomerMainComponent {
+export class CustomerMainComponent  {
 
   @Input() invoices: any;
+  @Input() postalCode?: string | undefined;
+
 
 }

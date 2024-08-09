@@ -1,7 +1,10 @@
 package pl.urban.korkpys.mapper;
 
 import pl.urban.korkpys.dto.InvoiceDto;
+import pl.urban.korkpys.dto.InvoiceDto.InvoiceItemDto;
+import pl.urban.korkpys.dto.InvoiceDto.PartyDto;
 import pl.urban.korkpys.model.Invoice;
+import pl.urban.korkpys.model.Invoice.InvoiceItem;
 import pl.urban.korkpys.model.Party;
 
 public class InvoiceMapper {
@@ -71,9 +74,7 @@ public class InvoiceMapper {
         invoice.setBankAccountNumber(dto.getBankAccountNumber());
         invoice.setSalesDate(dto.getSalesDate());
         invoice.setInvoiceType(dto.getInvoiceType());
-        invoice.setItems(dto.getItems().stream()
-                .map(InvoiceMapper::toEntity)
-                .toList());
+        invoice.setItems(dto.getItems().stream().map(InvoiceMapper::toEntity).toList());
         invoice.setDescription(dto.getDescription());
         invoice.setIssueDate(dto.getIssueDate());
         invoice.setNumber(dto.getNumber());
@@ -82,10 +83,10 @@ public class InvoiceMapper {
         return invoice;
     }
 
-    private static InvoiceDto.PartyDto toDto(Party entity) {
+    private static PartyDto toDto(Party entity) {
         if (entity == null) return null;
 
-        InvoiceDto.PartyDto dto = new InvoiceDto.PartyDto();
+        PartyDto dto = new PartyDto();
         dto.setName(entity.getName());
         dto.setNipPrefix(entity.getNipPrefix());
         dto.setNip(entity.getNip());
@@ -100,7 +101,7 @@ public class InvoiceMapper {
         return dto;
     }
 
-    private static Party toEntity(InvoiceDto.PartyDto dto) {
+    private static Party toEntity(PartyDto dto) {
         if (dto == null) return null;
 
         Party party = new Party();
@@ -118,10 +119,10 @@ public class InvoiceMapper {
         return party;
     }
 
-    private static InvoiceDto.InvoiceItemDto toDto(Invoice.InvoiceItem item) {
+    private static InvoiceItemDto toDto(InvoiceItem item) {
         if (item == null) return null;
 
-        InvoiceDto.InvoiceItemDto dto = new InvoiceDto.InvoiceItemDto();
+        InvoiceItemDto dto = new InvoiceItemDto();
         dto.setId(item.getId());
         dto.setProductId(item.getProductId());
         dto.setQuantity(item.getQuantity());
@@ -134,10 +135,10 @@ public class InvoiceMapper {
         return dto;
     }
 
-    private static Invoice.InvoiceItem toEntity(InvoiceDto.InvoiceItemDto dto) {
-        if (dto == null ) return null;
+    private static InvoiceItem toEntity(InvoiceItemDto dto) {
+        if (dto == null) return null;
 
-        Invoice.InvoiceItem item = new Invoice.InvoiceItem();
+        InvoiceItem item = new InvoiceItem();
         item.setId(dto.getId());
         item.setProductId(dto.getProductId() != null ? dto.getProductId() : 0L); // Handle null ProductId
         item.setQuantity(dto.getQuantity());

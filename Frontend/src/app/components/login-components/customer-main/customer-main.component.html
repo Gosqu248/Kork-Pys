@@ -3,9 +3,8 @@
   <div class="invoice-container">
     <app-invoice-component
       *ngFor="let invoice of invoices"
-      [image]="invoice.image"
-      [month]="invoice.invoiceMonth"
-      [year]="invoice.invoiceYear">
+      [invoice]="invoice"
+      [postalCode]="postalCode">
     </app-invoice-component>
   </div>
 </div>

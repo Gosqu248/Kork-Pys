@@ -22,8 +22,10 @@ import pl.urban.korkpys.repository.InvoiceRepository;
 import pl.urban.korkpys.mapper.InvoiceMapper;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -66,8 +68,7 @@ public class BackgroundJobService {
             String customersJson = response.getBody();
             try {
                 ObjectMapper objectMapper = new ObjectMapper();
-                List<CustomerDto> customerDtos = objectMapper.readValue(customersJson, new TypeReference<List<CustomerDto>>() {
-                });
+                List<CustomerDto> customerDtos = objectMapper.readValue(customersJson, new TypeReference<List<CustomerDto>>() {});
                 List<Customer> customersToUpdateOrSave = customerDtos.stream()
                         .map(CustomerMapper::toEntity)
                         .map(customer -> {
@@ -152,47 +153,14 @@ public class BackgroundJobService {
             try {
                 ObjectMapper objectMapper = new ObjectMapper();
                 objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-                objectMapper.registerModule(new JavaTimeModule()); // Add this line to handle LocalDateTime
+                objectMapper.registerModule(new JavaTimeModule());
 
-                List<InvoiceDto> invoiceDtos = objectMapper.readValue(invoicesJson, new TypeReference<List<InvoiceDto>>() {
-                });
-                List<Invoice> invoicesToUpdateOrSave = invoiceDtos.stream()
-                        .map(InvoiceMapper::toEntity)
-                        .map(invoice -> {
-                            Invoice existingInvoice = invoiceRepository.findById(invoice.getId()).orElse(null);
-                            if (existingInvoice != null) {
-                                boolean needsUpdate = false;
-
-                                if (!Objects.equals(existingInvoice.getPurchasingParty().getName(), invoice.getPurchasingParty().getName())) {
-                                    existingInvoice.getPurchasingParty().setName(invoice.getPurchasingParty().getName());
-                                    needsUpdate = true;
-                                }
-
-                                if (!Objects.equals(existingInvoice.getPurchasingParty().getStreet(), invoice.getPurchasingParty().getStreet())) {
-                                    existingInvoice.getPurchasingParty().setStreet(invoice.getPurchasingParty().getStreet());
-                                    needsUpdate = true;
-                                }
-
-                                if (!Objects.equals(existingInvoice.getGrossTotal(), invoice.getGrossTotal())) {
-                                    existingInvoice.setGrossTotal(invoice.getGrossTotal());
-                                    needsUpdate = true;
-                                }
-
-                                if (needsUpdate) {
-                                    log.info("Updating invoice with ID: " + invoice.getId());
-                                    invoiceService.saveInvoice(existingInvoice);
-                                    return existingInvoice;
-                                }
-                                return existingInvoice;
-                            } else {
-                                invoiceService.saveInvoice(invoice);
-                                return invoice;
-                            }
-                        })
-                        .collect(Collectors.toList());
-
-                invoiceRepository.saveAll(invoicesToUpdateOrSave);
-                log.info("Successfully fetched and updated or saved unique invoices in background.");
+                List<InvoiceDto> invoiceDtos = objectMapper.readValue(invoicesJson, new TypeReference<List<InvoiceDto>>() {});
+                for (InvoiceDto invoiceDto : invoiceDtos) {
+                    Invoice invoice = InvoiceMapper.toEntity(invoiceDto);
+                    invoiceService.saveOrUpdateInvoice(invoice);
+                }
+                log.info("Successfully fetched and processed invoices in background.");
             } catch (IOException e) {
                 log.error("Error parsing invoice data: " + e.getMessage());
             }

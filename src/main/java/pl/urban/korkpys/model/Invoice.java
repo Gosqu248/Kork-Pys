@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Setter
@@ -33,10 +34,9 @@ public class Invoice {
     private boolean isOssProcedure;
     private boolean isFinal;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "purchasing_party_id")
     private Party purchasingParty;
-
 
     private int paymentTypeId;
     private int paymentType;
@@ -48,7 +48,7 @@ public class Invoice {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "invoice_id")
-    private List<InvoiceItem> items;
+    private List<InvoiceItem> items = new ArrayList<>();
 
     private String description;
     private OffsetDateTime issueDate;
@@ -62,7 +62,6 @@ public class Invoice {
     public static class InvoiceItem {
 
         @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
 
         private long productId;
